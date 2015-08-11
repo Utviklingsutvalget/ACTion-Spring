@@ -5,6 +5,9 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/locations/index.html',
             controller: 'LocationsController'
         })
+        .when('/authenticate', {
+            templateUrl: '/views/authentication/index.html'
+        })
         .when('/initiation', {
             templateUrl: '/views/initiation/index.html',
             controller: 'InitiationSchedulesController  '

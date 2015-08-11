@@ -1,7 +1,8 @@
 var app = angular.module('action', [
-    'ngRoute'
+    'ngRoute',
+    'oauth'
 ]);
 
 app.config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode(false).hashPrefix('!');
+    $locationProvider.html5Mode(true).hashPrefix('!');
 }]);

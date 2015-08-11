@@ -14,6 +14,8 @@ var sources = [
     'node_modules/jquery/dist/jquery.js',
     'node_modules/angular/angular.js',
     'node_modules/angular-route/angular-route.js',
+    'node_modules/ngstorage/ngStorage.js',
+    'node_modules/oauth-ng/dist/oauth-ng.js',
     'node_modules/foundation-sites/js/foundation.js',
 
     'src/main/js/**/*.js'
