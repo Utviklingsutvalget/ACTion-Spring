@@ -16,6 +16,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.util.Assert;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.PathResourceResolver;
@@ -55,14 +56,20 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
 
     @Bean
     public Key secretKey() throws UnsupportedEncodingException {
-        return new AesKey(env.getProperty("action.secret").getBytes("UTF-8"));
+        String secret = env.getProperty("action.secret");
+        Assert.notNull(secret, "Application secret \"action.secret\" must not be null");
+        return new AesKey(secret.getBytes("UTF-8"));
     }
 
     @Bean
     public GoogleCredential googleCredential() {
         GoogleCredential.Builder credential = new GoogleCredential.Builder();
 
-        credential.setClientSecrets(env.getProperty("google.client.id"), env.getProperty("google.client.secret"));
+        String googleClientId = env.getProperty("google.client.id");
+        Assert.notNull(googleClientId, "Client ID \"google.client.id\" must not be null");
+        String googleClientSecret = env.getProperty("google.client.secret");
+        Assert.notNull(googleClientSecret, "Application Secret \"google.client.secret\" must not be null");
+        credential.setClientSecrets(googleClientId, googleClientSecret);
         credential.setJsonFactory(JacksonFactory.getDefaultInstance());
 
         return credential.build();
