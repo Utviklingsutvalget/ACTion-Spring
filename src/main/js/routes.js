@@ -5,6 +5,18 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/locations/index.html',
             controller: 'LocationsController'
         })
+        .when('/initiation', {
+            templateUrl: '/views/initiation/index.html',
+            controller: 'InitiationSchedulesController  '
+        })
+        .when('/initiation/new', {
+            templateUrl: '/views/initiation/form.html',
+            controller: 'InitiationSchedulesController'
+        })
+        .when('initiation/:id', {
+            templateUrl: 'views/initiation/show.html',
+            controller: 'InitiationScheduleController'
+        })
         .when('/locations/new', {
             templateUrl: '/views/locations/form.html',
             controller: 'LocationsController'

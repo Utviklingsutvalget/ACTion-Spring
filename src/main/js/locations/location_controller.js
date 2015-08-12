@@ -3,7 +3,7 @@ angular.module('action').controller('LocationController', ['$scope', '$routePara
         $scope.fetch = function (id) {
             LocationService.get(id).success(function(location) {
                 $scope.location = location;
-            })
+            });
         };
 
         if(!$scope.location) {
