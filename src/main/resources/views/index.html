@@ -62,9 +62,8 @@
             <li><a class="headertext" href="/events">Eventer </a></li>
             <li><a class="headertext" href="/#!/initiation">Fadderuke </a></li>
             <li><a class="headertext" href="/clubs">Utvalg </a></li>
-
-
-            <li><a class="headertext" href="/#!/authenticate">Login </a></li>
+            <li ng-show="loggedIn === false"><a class="headertext" href="/#!/authenticate">Login </a></li>
+            <li ng-show="loggedIn === true"><a class="headertext" href="/#!/me">Profil </a></li>
 
         </ul>
 
@@ -86,7 +85,8 @@
             <li><a class="headertext" href="/#!/locations">Lokasjoner</a></li>
 
 
-            <li><a class="headertext" href="/#!/authenticate">Login </a></li>
+            <li ng-show="loggedIn === false"><a class="headertext" href="/#!/authenticate">Login </a></li>
+            <li ng-show="loggedIn === true"><a class="headertext" href="/#!/me">Profil </a></li>
 
         </ul>
     </div>

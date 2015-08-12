@@ -28,6 +28,10 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/locations/show.html',
             controller: 'LocationController'
         })
+        .when('/me', {
+            templateUrl: '/views/users/index.html',
+            controller: 'UserController'
+        })
         .otherwise({
             templateUrl: '/views/notFound.html'
         });

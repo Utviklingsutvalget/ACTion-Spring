@@ -9,6 +9,10 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
         return $http.post('/api/authenticate/exchange', token);
     };
 
+    this.isLoggedIn = function() {
+        return $localStorage.jwt !== undefined;
+    };
+
     this.login = function(jwt) {
         $localStorage.jwt = jwt;
         $http.defaults.headers.common['x-auth'] = jwt.token;
@@ -17,5 +21,6 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
     this.logout = function() {
         delete $http.defaults.headers.common['x-auth'];
         delete $localStorage.jwt;
+        delete $localStorage.token;
     };
 }]);
