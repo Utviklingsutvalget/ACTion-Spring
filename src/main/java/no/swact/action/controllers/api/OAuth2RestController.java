@@ -28,8 +28,6 @@ public class OAuth2RestController {
     private static final Logger LOG = LoggerFactory.getLogger(OAuth2RestController.class);
 
     @Autowired
-    private Environment environment;
-    @Autowired
     private GoogleCredential googleCredential;
     @Autowired
     private UserService userService;
