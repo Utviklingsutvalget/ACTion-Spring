@@ -13,7 +13,7 @@ public class InitiationSchedule {
     @ManyToOne
     private Location location;
     private Year year;
-    @OneToMany(mappedBy = "initiationSchedule")
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<InitiationEvent> initiationEvents;
 
     public Long getId() {

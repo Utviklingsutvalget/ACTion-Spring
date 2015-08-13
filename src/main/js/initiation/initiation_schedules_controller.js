@@ -1,6 +1,6 @@
-angular.module('action').controller('InitiationSchedulesController', ['$scope', '$routeParams',
+angular.module('action').controller('InitiationSchedulesController', ['$scope', '$routeParams', '$location',
     'InitiationSchedulesService',
-    function ($scope, $routeParams, InitiationSchedulesService) {
+    function ($scope, $routeParams, $location, InitiationSchedulesService) {
 
         $scope.fetchAll = function() {
             InitiationSchedulesService.findAll().success(function(InitiationSchedules) {

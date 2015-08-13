@@ -2,6 +2,7 @@ package no.swact.action.models;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class InitiationEvent {
@@ -12,10 +13,10 @@ public class InitiationEvent {
     private String title;
     private LocalDateTime dateTime;
     private String place;
-    @Column (length = 300)
+    @Column(length = 350)
     private String description;
-    @ManyToOne
-    private InitiationSchedule initiationSchedule;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<InitiationSchedule> initiationSchedule;
 
     public Long getId() {
         return id;
@@ -57,11 +58,11 @@ public class InitiationEvent {
         this.description = description;
     }
 
-    public InitiationSchedule getInitiationSchedule() {
+    public List<InitiationSchedule> getInitiationSchedule() {
         return initiationSchedule;
     }
 
-    public void setInitiationSchedule(InitiationSchedule initiationSchedule) {
+    public void setInitiationSchedule(List<InitiationSchedule> initiationSchedule) {
         this.initiationSchedule = initiationSchedule;
     }
 }

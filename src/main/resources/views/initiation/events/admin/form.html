@@ -1,0 +1,20 @@
+<form class="columns">
+    <div class="medium-6 columns">
+        <label class="small-12 columns">Tittel
+            <input type="text" ng-model="event.title">
+        </label>
+        <label class="small-12 columns">
+        <textarea ng-model="event.description" maxlength="350" rows="14" placeholder="Skriv noe om eventet">
+        </textarea>
+        </label>
+    </div>
+    <label class="medium-6 columns">Tidspunkt
+        <datetimepicker data-ng-model="event.dateTime"></datetimepicker>
+    </label>
+
+    <div class="small-12 columns">
+        <label class="medium-6 columns">Legg til i ordninger
+            <select ng-options="location.name for location in locations track by location.id"></select>
+        </label>
+    </div>
+</form>

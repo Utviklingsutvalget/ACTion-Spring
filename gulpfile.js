@@ -12,8 +12,12 @@ gulp.task('default', ['scripts', 'sass', 'watch']);
 
 var sources = [
     'node_modules/jquery/dist/jquery.js',
+    'node_modules/moment/moment.js',
     'node_modules/angular/angular.js',
     'node_modules/angular-route/angular-route.js',
+    'node_modules/angular-sanitize/angular-sanitize.js',
+    'node_modules/angular-markdown-directive/markdown.js',
+    'node_modules/angular-bootstrap-datetimepicker/src/js/datetimepicker.js',
     'node_modules/ngstorage/ngStorage.js',
     'node_modules/oauth-ng/dist/oauth-ng.js',
     'node_modules/foundation-sites/js/foundation.js',

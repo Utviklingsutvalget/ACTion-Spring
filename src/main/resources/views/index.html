@@ -10,7 +10,7 @@
 <body ng-app="action" ng-controller="AuthenticationController">
 <div class="row">
     <div class="small-12 columns show-for-medium-up backgroundimagelarge">
-        <img src="/assets/images/header.jpg" />
+        <img src="/assets/images/header.jpg"/>
 
         <a href="/">
             <div class="headercircle-large text-center show-for-large-up">
@@ -36,7 +36,7 @@
 
 <div class="row">
     <div class="small-12 columns hide-for-medium-up">
-        <img id="backgroundimagesmall" src="/assets/images/header.jpg" />
+        <img id="backgroundimagesmall" src="/assets/images/header.jpg"/>
 
         <a href="/">
             <div class="headercircle-small text-center hide-for-medium-up">
@@ -82,11 +82,10 @@
             <li><a class="headertext" href="/feed">Feed </a></li>
             <li><a class="headertext" href="/events">Eventer </a></li>
             <li><a class="headertext" href="/#!/initiation">Fadderuke </a></li>
-            <li><a class="headertext" href="/#!/locations">Lokasjoner</a></li>
-
-
-            <li ng-show="loggedIn === false"><a class="headertext" href="/#!/authenticate">Login </a></li>
-            <li ng-show="loggedIn === true"><a class="headertext" href="/#!/me">Profil </a></li>
+            <li>
+                <a class="headertext" ng-show="loggedIn === false" href="/#!/authenticate">Login </a>
+                <a class="headertext" ng-show="loggedIn === true" href="/#!/me">Profil </a>
+            </li>
 
         </ul>
     </div>
@@ -100,10 +99,10 @@
         <div class="line lineright"></div>
     </div>
     <div class="small-4 columns text-center show-for-medium-up">
-        <h4><strong>Feed<br/> <br/></strong></h4>
+        <h4><strong>{{title}}<br/> <br/></strong></h4>
     </div>
     <div class="small-4 columns text-center hide-for-medium-up">
-        <h4><strong id="alt-title">Feed<br/> <br/></strong></h4>
+        <h4><strong id="alt-title">{{title}}<br/> <br/></strong></h4>
     </div>
     <div class="small-4 columns">
         <div class="line lineleft"></div>
