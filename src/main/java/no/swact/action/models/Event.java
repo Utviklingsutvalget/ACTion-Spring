@@ -1,9 +1,6 @@
 package no.swact.action.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +16,7 @@ public abstract class Event {
     private String place;
     @Column(length = 350)
     private String description;
+    @ManyToMany
     private List<User> attending = new ArrayList<>();
 
     public Long getId() {
