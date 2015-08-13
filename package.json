@@ -13,7 +13,8 @@
     "foundation-apps": "1.1.0",
     "foundation-sites": "5.5.2",
     "jquery": "2.1.4",
-    "angular-bootstrap-datetimepicker": "0.3.13"
+    "angular-bootstrap-datetimepicker": "0.3.13",
+    "ng-file-upload": "~5.0.9"
   },
   "devDependencies": {
     "bower": "^1.4.1",

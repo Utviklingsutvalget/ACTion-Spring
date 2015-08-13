@@ -2,6 +2,7 @@ var app = angular.module('action', [
     'ngRoute',
     'ui.bootstrap.datetimepicker',
     'btford.markdown',
+    'ngFileUpload',
     'oauth'
 ]);
 

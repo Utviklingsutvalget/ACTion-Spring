@@ -3,10 +3,13 @@ package no.swact.action.configuration;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import no.swact.action.authorization.RequestInitializerInterceptor;
+import no.swact.action.services.ImageUploadService;
+import no.swact.action.services.S3ImageUploadService;
 import org.jose4j.keys.AesKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
@@ -31,6 +34,11 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "no.swact.action.repositories")
 public class ACTionConfiguration extends SpringDataWebConfiguration {
 
+    private static final Logger LOG = LoggerFactory.getLogger(ACTionConfiguration.class);
+    public static final String AWS_S3_BUCKET = "aws.s3.bucket";
+    public static final String AWS_ACCESS_KEY = "aws.access.key";
+    public static final String AWS_SECRET_KEY = "aws.secret.key";
+
     @Autowired
     private Environment env;
 
@@ -52,6 +60,15 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
                                 : null;
                     }
                 });
+    }
+
+    @Bean
+    public ImageUploadService fileUploadService() {
+        String accessKey = env.getProperty(AWS_ACCESS_KEY);
+        String secretKey = env.getProperty(AWS_SECRET_KEY);
+        final String s3Bucket = env.getProperty(AWS_S3_BUCKET);
+
+        return new S3ImageUploadService(accessKey, secretKey, s3Bucket);
     }
 
     @Bean

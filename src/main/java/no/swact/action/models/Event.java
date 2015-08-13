@@ -14,6 +14,8 @@ public abstract class Event {
     private String title;
     private ZonedDateTime dateTime;
     private String place;
+    @ManyToOne
+    private UploadedImage image;
     @Column(length = 350)
     private String description;
     @ManyToMany
