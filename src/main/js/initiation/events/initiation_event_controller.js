@@ -12,10 +12,6 @@ angular.module('action').controller('InitiationEventController', [
             });
         };
 
-        $scope.beforeRender = function ($view, $dates, $leftDate, $upDate, $rightDate) {
-
-        };
-
         $scope.createEvent = function () {
             console.log($scope.event);
             InitiationService.saveEvent($scope.event).then(function (response) {
@@ -23,6 +19,27 @@ angular.module('action').controller('InitiationEventController', [
                 console.log(response);
                 $location.path('/initiation/events/' + response.data.id);
             });
+        };
+
+        $scope.addScheduleToEvent = function(schedule) {
+            if(!schedule) {
+                return;
+            }
+            if(!$scope.event) {
+                $scope.event = {};
+            }
+            if(!$scope.event.schedules) {
+                $scope.event.schedules = [];
+            }
+            if($scope.event.schedules.indexOf(schedule) === -1) {
+                $scope.event.schedules.push(schedule);
+            }
+        };
+
+        $scope.removeScheduleFromEvent = function(schedule) {
+            var schedules = $scope.event.schedules;
+            var index = schedules.indexOf(schedule);
+            schedules.splice(index, 1);
         };
 
         if ($routeParams.id) {

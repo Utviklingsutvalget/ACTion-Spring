@@ -10,7 +10,7 @@ angular.module('action').controller('LocationsController', ['$scope', '$location
     $scope.createLocation = function() {
         LocationService.saveLocation($scope.location).success(function(location) {
             $scope.location = location;
-            $location.path('/locations/' + location.id);
+            $location.path('/admin/locations/' + location.id);
         });
     };
 

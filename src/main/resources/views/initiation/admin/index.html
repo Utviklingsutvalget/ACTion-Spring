@@ -1,14 +1,14 @@
-<div class="small-12 medium-6 columns">
+<div class="small-12 medium-6 columns" ng-controller="InitiationSchedulesController">
     <h1>Fadderordninger</h1>
 
     <div ng-repeat="schedule in schedules"><a ng-href="/#!/initiation/{{schedule.id}}">{{schedule.location.name}}</a></div>
 
     <a href="/#!/initiation/new" class="button">Opprett ny fadderordning</a>
 </div>
-<div class="small-12 medium-6 columns">
-    <h1 class="right">Faddereventer</h1>
+<div class="small-12 medium-6 columns" ng-controller="InitiationEventsController">
+    <h1>Faddereventer</h1>
 
-    <div ng-repeat="event in events"><a ng-href="/#!/admin/initiation/events">{{event.name}}</a></div>
+    <div ng-repeat="event in events"><a ng-href="/#!/initiation/events/{{event.id}}">{{event.title}}</a></div>
 
     <a href="/#!/initiation/events/new" class="button">Opprett ny fadderevent</a>
 </div>

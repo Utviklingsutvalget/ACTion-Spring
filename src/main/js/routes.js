@@ -42,8 +42,7 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             controller: 'AdminController'
         })
         .when('/admin/initiation', {
-            templateUrl: '/views/initiation/admin/index.html',
-            controller: 'InitiationSchedulesController'
+            templateUrl: '/views/initiation/admin/index.html'
         })
         .when('/initiation/events/new', {
             templateUrl: '/views/initiation/events/admin/form.html',

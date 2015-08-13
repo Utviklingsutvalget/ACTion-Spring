@@ -11,6 +11,10 @@ angular.module('action').service('InitiationService', ['$http', function($http) 
         return $http.post('/api/initiation', schedule);
     };
 
+    this.getAllEvents = function() {
+        return $http.get('/api/initiation/events');
+    };
+
     this.saveEvent = function(event) {
         return $http.post('/api/initiation/events', event);
     };

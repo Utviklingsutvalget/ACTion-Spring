@@ -2,10 +2,7 @@ package no.swact.action.models;
 
 import no.swact.action.models.initiation.InitiationSchedule;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +13,7 @@ public class Location {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<InitiationSchedule> initiationSchedules = new ArrayList<>();
 
     private String name;

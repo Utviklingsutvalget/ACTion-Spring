@@ -1,13 +1,14 @@
 <form>
-    <div ng-controller="LocationsController">
-        <label for="location-select">Lokasjon</label>
-            <strong ng-hide="locations.length">Ingen lokasjoner opprettet</strong>
-            <select id="location-select"
-                    ng-model="$parent.schedule.location"
-                    ng-show="locations.length"
-                    ng-options="location.name for location in locations track by location.id"></select>
-    </div>
+    <strong ng-hide="locations.length">Ingen lokasjoner opprettet</strong>
 
-    <a class="button" href="#" ng-click="createSchedule()">Opprett
-        ordning</a>
+    <div ng-controller="LocationsController" ng-show="locations.length !== 0">
+        <label for="location-select">Lokasjon</label>
+
+        <select id="location-select"
+                ng-model="$parent.schedule.location"
+                ng-show="locations.length"
+                ng-options="location.name for location in locations track by location.id"></select>
+        <a class="button" href="#" ng-click="createSchedule()">Opprett
+            ordning</a>
+    </div>
 </form>

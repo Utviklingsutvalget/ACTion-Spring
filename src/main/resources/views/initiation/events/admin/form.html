@@ -16,17 +16,36 @@
 
         </label>
     </div>
+    &nbsp;
     <div class="medium-6 columns">
-        <label>
+        <label class="small-12 columns">
             Sted
             <input type="text" ng-model="event.place"/>
         </label>
     </div>
 
-    <div class="small-12 columns">
-        <label class="medium-6 columns">Legg til i ordninger
-            <select ng-options="location.name for location in locations track by location.id"></select>
-        </label>
+    <div ng-controller="InitiationSchedulesController" class="small-12 columns">
+        <div ng-show="schedules">
+            <label class="medium-6 columns">Legg til fadderordninger
+                <select ng-model="schedule"
+                        ng-options="schedule.location.name for schedule in schedules track by schedule.id"></select>
+            </label>
+
+            <div class="medium-3 columns">
+                <button class="button" ng-click="addScheduleToEvent(schedule)">Legg til</button>
+            </div>
+            <div class="medium-3 columns">
+                <div ng-repeat="schedule in event.schedules" class="panel">
+                    <p class="small-12 columns">
+                        {{schedule.location.name}}
+                    </p>
+                    <button class="button alert" ng-click="removeScheduleFromEvent(schedule)">Fjern</button>
+                </div>
+            </div>
+        </div>
+        <div ng-hide="schedules">
+            <strong>Det finnes ingen fadderordninger å legge til eventen i!</strong>
+        </div>
     </div>
     <button class="button" ng-click="createEvent()">Opprett event</button>
 </form>

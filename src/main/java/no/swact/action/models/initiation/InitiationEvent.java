@@ -11,13 +11,13 @@ import java.util.List;
 public class InitiationEvent extends Event {
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<InitiationSchedule> initiationSchedule;
+    private List<InitiationSchedule> schedules;
 
-    public List<InitiationSchedule> getInitiationSchedule() {
-        return initiationSchedule;
+    public List<InitiationSchedule> getSchedules() {
+        return schedules;
     }
 
-    public void setInitiationSchedule(List<InitiationSchedule> initiationSchedule) {
-        this.initiationSchedule = initiationSchedule;
+    public void setSchedules(List<InitiationSchedule> schedules) {
+        this.schedules = schedules;
     }
 }

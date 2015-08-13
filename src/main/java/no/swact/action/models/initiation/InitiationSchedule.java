@@ -13,9 +13,9 @@ public class InitiationSchedule {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Location location;
-    private Year year;
+    private Year year = Year.now();
     @ManyToMany(cascade = CascadeType.ALL)
     private List<InitiationEvent> initiationEvents;
 
