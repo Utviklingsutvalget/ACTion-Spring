@@ -1,11 +1,15 @@
 package no.swact.action.models;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class InitiationEvent {
+@MappedSuperclass
+public abstract class Event {
 
     @Id
     @GeneratedValue
@@ -15,14 +19,13 @@ public class InitiationEvent {
     private String place;
     @Column(length = 350)
     private String description;
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<InitiationSchedule> initiationSchedule;
+    private List<User> attending = new ArrayList<>();
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
@@ -30,7 +33,7 @@ public class InitiationEvent {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(final String title) {
         this.title = title;
     }
 
@@ -38,7 +41,7 @@ public class InitiationEvent {
         return dateTime;
     }
 
-    public void setDateTime(LocalDateTime dateTime) {
+    public void setDateTime(final LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -46,7 +49,7 @@ public class InitiationEvent {
         return place;
     }
 
-    public void setPlace(String place) {
+    public void setPlace(final String place) {
         this.place = place;
     }
 
@@ -54,15 +57,15 @@ public class InitiationEvent {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(final String description) {
         this.description = description;
     }
 
-    public List<InitiationSchedule> getInitiationSchedule() {
-        return initiationSchedule;
+    public List<User> getAttending() {
+        return attending;
     }
 
-    public void setInitiationSchedule(List<InitiationSchedule> initiationSchedule) {
-        this.initiationSchedule = initiationSchedule;
+    public void setAttending(final List<User> attending) {
+        this.attending = attending;
     }
 }

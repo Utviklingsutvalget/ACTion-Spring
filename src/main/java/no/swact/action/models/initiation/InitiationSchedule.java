@@ -1,4 +1,7 @@
-package no.swact.action.models;
+package no.swact.action.models.initiation;
+
+import no.swact.action.models.Location;
+import no.swact.action.models.initiation.InitiationEvent;
 
 import javax.persistence.*;
 import java.time.Year;

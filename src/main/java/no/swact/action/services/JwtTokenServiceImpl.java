@@ -2,7 +2,7 @@ package no.swact.action.services;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import no.swact.action.models.Token;
+import no.swact.action.models.auth.Token;
 import no.swact.action.models.User;
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers;
 import org.jose4j.jwe.JsonWebEncryption;

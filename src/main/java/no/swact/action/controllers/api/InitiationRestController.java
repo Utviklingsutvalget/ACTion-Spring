@@ -1,6 +1,6 @@
 package no.swact.action.controllers.api;
 
-import no.swact.action.models.InitiationSchedule;
+import no.swact.action.models.initiation.InitiationSchedule;
 import no.swact.action.services.InitiationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,4 +1,4 @@
-package no.swact.action.models;
+package no.swact.action.models.auth;
 
 public class Token {
 

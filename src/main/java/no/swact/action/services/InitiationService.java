@@ -1,6 +1,6 @@
 package no.swact.action.services;
 
-import no.swact.action.models.InitiationSchedule;
+import no.swact.action.models.initiation.InitiationSchedule;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

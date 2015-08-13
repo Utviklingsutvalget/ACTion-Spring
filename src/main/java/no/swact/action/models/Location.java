@@ -1,5 +1,7 @@
 package no.swact.action.models;
 
+import no.swact.action.models.initiation.InitiationSchedule;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

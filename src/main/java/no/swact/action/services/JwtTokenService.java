@@ -1,6 +1,6 @@
 package no.swact.action.services;
 
-import no.swact.action.models.Token;
+import no.swact.action.models.auth.Token;
 import no.swact.action.models.User;
 import org.springframework.stereotype.Service;
 
