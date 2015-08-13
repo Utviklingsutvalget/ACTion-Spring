@@ -1,15 +1,15 @@
 angular.module('action').controller('InitiationSchedulesController', ['$scope', '$routeParams', '$location',
-    'InitiationSchedulesService',
-    function ($scope, $routeParams, $location, InitiationSchedulesService) {
+    'InitiationService',
+    function ($scope, $routeParams, $location, InitiationService) {
 
         $scope.fetchAll = function() {
-            InitiationSchedulesService.findAll().success(function(InitiationSchedules) {
+            InitiationService.findAll().success(function(InitiationSchedules) {
                 $scope.schedules = InitiationSchedules;
             });
         };
 
         $scope.createSchedule = function() {
-            InitiationSchedulesService.saveSchedule($scope.schedule).success(function(schedule) {
+            InitiationService.saveSchedule($scope.schedule).success(function(schedule) {
                 $scope.schedule = schedule;
                 $location.path('/initiation/' + schedule.id);
             });

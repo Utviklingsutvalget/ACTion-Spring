@@ -1,7 +1,7 @@
 package no.swact.action.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +12,7 @@ public abstract class Event {
     @GeneratedValue
     private Long id;
     private String title;
-    private LocalDateTime dateTime;
+    private ZonedDateTime dateTime;
     private String place;
     @Column(length = 350)
     private String description;
@@ -35,11 +35,11 @@ public abstract class Event {
         this.title = title;
     }
 
-    public LocalDateTime getDateTime() {
+    public ZonedDateTime getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(final LocalDateTime dateTime) {
+    public void setDateTime(final ZonedDateTime dateTime) {
         this.dateTime = dateTime;
     }
 

@@ -49,6 +49,10 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/initiation/events/admin/form.html',
             controller: 'InitiationEventController'
         })
+        .when('/initiation/events/:id', {
+            templateUrl: '/views/initiation/events/show.html',
+            controller: 'InitiationEventController'
+        })
         .otherwise({
             title: '404',
             templateUrl: '/views/notFound.html'

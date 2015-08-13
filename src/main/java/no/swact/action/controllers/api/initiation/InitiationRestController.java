@@ -1,4 +1,4 @@
-package no.swact.action.controllers.api;
+package no.swact.action.controllers.api.initiation;
 
 import no.swact.action.models.initiation.InitiationSchedule;
 import no.swact.action.services.InitiationService;

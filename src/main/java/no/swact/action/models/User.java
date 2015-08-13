@@ -1,5 +1,6 @@
 package no.swact.action.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -99,31 +100,37 @@ public class User implements Authentication {
         this.email = email;
     }
 
+    @JsonIgnore
     @Override
     public Collection<GrantedAuthority> getAuthorities() {
         return new ArrayList<>();
     }
 
+    @JsonIgnore
     @Override
     public Object getCredentials() {
         return this.accessToken;
     }
 
+    @JsonIgnore
     @Override
     public Object getDetails() {
         return null;
     }
 
+    @JsonIgnore
     @Override
     public Object getPrincipal() {
         return this.id;
     }
 
+    @JsonIgnore
     @Override
     public boolean isAuthenticated() {
         return accessToken != null;
     }
 
+    @JsonIgnore
     @Override
     public void setAuthenticated(final boolean b) throws IllegalArgumentException {
 

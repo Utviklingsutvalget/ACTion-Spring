@@ -8,13 +8,25 @@
         </textarea>
         </label>
     </div>
-    <label class="medium-6 columns">Tidspunkt
-        <datetimepicker data-ng-model="event.dateTime"></datetimepicker>
-    </label>
+    <div class="medium-6 columns">
+        <label class="small-12 columns">Tidspunkt<span ng-show="event.dateTime">: {{event.dateTime | date:'yyyy-MM-dd HH:mm' }}</span>
+            <datetimepicker ng-model="event.dateTime"
+
+                            data-on-set-time="onTimeSet(newDate)"></datetimepicker>
+
+        </label>
+    </div>
+    <div class="medium-6 columns">
+        <label>
+            Sted
+            <input type="text" ng-model="event.place"/>
+        </label>
+    </div>
 
     <div class="small-12 columns">
         <label class="medium-6 columns">Legg til i ordninger
             <select ng-options="location.name for location in locations track by location.id"></select>
         </label>
     </div>
+    <button class="button" ng-click="createEvent()">Opprett event</button>
 </form>
