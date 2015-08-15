@@ -17,6 +17,7 @@
     "ng-file-upload": "~5.0.9"
   },
   "devDependencies": {
+    "node-sass": "3.4.0",
     "bower": "^1.4.1",
     "gulp": "^3.9.0",
     "gulp-cached": "~1.1.0",
