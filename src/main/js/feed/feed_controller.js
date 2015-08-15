@@ -4,10 +4,16 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
     $scope.previewActive = "";
 
     var fetchFeedInfo = function(){
-        FeedsService.fetchById($routeParams.id).then(function(feed){
-            $scope.feed = feed;
+        if($routeParams.id === undefined){
+            $scope.search = {};
+            return;
+        }
+
+        FeedsService.fetchById($routeParams.id).then(function(object){
+            $scope.feed = object.data;
+            console.log(object);
         }, function(error){
-            $scope.error = error;
+            $scope.errorMessage = error;
             $scope.search = {};
         });
     };
@@ -21,7 +27,7 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
         FeedsService.save($scope.feed).then(function(message){
             $scope.feedBack = message;
         }, function(error){
-            $scope.feedBack = error;
+            $scope.errorMessage = error;
         });
     };
 
@@ -30,5 +36,5 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
         console.log("Swapped preview, preview is now: " + $scope.preview);
     };
 
-
+    fetchFeedInfo();
 }]);

@@ -1,1 +1,17 @@
-SHOW THIS SHIT
+<div class="row">
+    <div class="medium-10 medium-offset-1 columns">
+        <h1>
+            {{feed.title}}
+        </h1>
+    </div>
+</div>
+<!-- image -->
+
+<div class="row">
+    <div class="medium-2 medium-offset-1 columns">
+        <img style="height: 150px; width: 150px;" ng-src="{{feed.image.url}}"/>
+    </div>
+    <div class="medium-8 columns">
+        <div btf-markdown="feed.text"></div>
+    </div>
+</div>
