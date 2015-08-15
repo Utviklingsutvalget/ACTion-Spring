@@ -11,4 +11,12 @@ public interface FeedService {
     List<Feed> all();
 
     Feed getForId(Long id);
+
+    Feed save(Feed feed);
+
+    Feed update(Feed feed);
+
+    void delete(Long id);
+
+    void delete(Feed feed);
 }
