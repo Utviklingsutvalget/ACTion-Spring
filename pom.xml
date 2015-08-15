@@ -18,7 +18,7 @@
     </properties>
 
     <build>
-        <plugins>
+        <>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -27,58 +27,58 @@
                 </configuration>
             </plugin>
             <plugin>
-                <plugin>
-                    <groupId>com.github.eirslett</groupId>
-                    <artifactId>frontend-maven-plugin</artifactId>
-                    <version>0.0.23</version>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>0.0.23</version>
 
-                    <configuration>
+                <configuration>
 
-                    </configuration>
+                </configuration>
 
-                    <executions>
-                        <execution>
-                            <!-- optional: you don't really need execution ids,
-                            but it looks nice in your build log. -->
-                            <id>install node and npm</id>
-                            <goals>
-                                <goal>install-node-and-npm</goal>
-                            </goals>
-                            <!-- optional: default phase is "generate-resources" -->
-                            <phase>generate-resources</phase>
-                            <configuration>
-                                <nodeVersion>v0.10.18</nodeVersion>
-                                <npmVersion>1.3.8</npmVersion>
-                            </configuration>
-                        </execution>
+                <executions>
+                    <execution>
+                        <!-- optional: you don't really need execution ids,
+                        but it looks nice in your build log. -->
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <!-- optional: default phase is "generate-resources" -->
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v0.10.18</nodeVersion>
+                            <npmVersion>1.3.8</npmVersion>
+                        </configuration>
+                    </execution>
 
-                        <execution>
-                            <id>npm install</id>
-                            <goals>
-                                <goal>npm</goal>
-                            </goals>
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
 
-                            <phase>generate-resources</phase>
-                            <configuration>
-                                <arguments>install</arguments>
-                            </configuration>
-                        </execution>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
 
-                        <execution>
-                            <id>gulp dist</id>
+                    <execution>
+                        <id>gulp dist</id>
 
-                            <goals>
-                                <goal>gulp</goal>
-                            </goals>
+                        <goals>
+                            <goal>gulp</goal>
+                        </goals>
 
-                            <phase>generate-resources</phase>
+                        <phase>generate-resources</phase>
 
-                            <configuration>
-                                <arguments>dist</arguments>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+                        <configuration>
+                            <arguments>dist</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>com.heroku.sdk</groupId>
                 <artifactId>heroku-maven-plugin</artifactId>
                 <version>0.5.1</version>
@@ -150,12 +150,12 @@
             <version>1.8.6</version>
         </dependency>
         <!--
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-aop</artifactId>
-    <version>4.1.4.RELEASE</version>
-</dependency>
--->
+        <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-aop</artifactId>
+        <version>4.1.4.RELEASE</version>
+        </dependency>
+        -->
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
