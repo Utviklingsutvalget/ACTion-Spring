@@ -17,20 +17,26 @@
     <!-- image -->
 
     <div class="row">
-        <div class="medium-10 medium-offset-1 columns">
-            <img style="height: 200px; width: 200px;" ng-src="{{feed.image.url}}"/>
+        <div class="medium-2 medium-offset-1 columns">
+            <img style="height: 150px; width: 150px;" ng-src="{{feed.image.url}}"/>
         </div>
-    </div>
-    <div class="row">
-        <div class="medium-10 medium-offset-1 columns">
+        <div class="medium-8 columns">
             <p>
-                {{feed.text}}
+                {{feed.snippet}}
             </p>
         </div>
     </div>
     <div class="row">
         <div class="medium-10 medium-offset-1 columns">
+            <hr/>
+        </div>
+    </div>
+
+    <!--
+    <div class="row">
+        <div class="medium-10 medium-offset-1 columns">
             <div btf-markdown="feed.snippet"></div>
         </div>
     </div>
+    -->
 </div>

@@ -9,4 +9,16 @@ angular.module("action").controller("FeedsController", ["$scope", "FeedsService"
             return;
         });
     };
+
+    $scope.feeds = [
+        {
+            title: "Arne",
+            text: "#Snippet here " +
+            "##Hei",
+            snippet: "Omg what a lovely snippet",
+            image: {
+                url: "https://i.imgur.com/csgtUSw.jpg"
+            }
+        }
+    ];
 }]);
