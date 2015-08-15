@@ -5,12 +5,13 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
 
     var fetchFeedInfo = function(){
         if($routeParams.id === undefined){
-            $scope.search = {};
+            $scope.feed = {};
             return;
         }
 
         FeedsService.fetchById($routeParams.id).then(function(object){
             $scope.feed = object.data;
+            $scope.currentImage = $scope.feed.image;
             console.log(object);
         }, function(error){
             $scope.errorMessage = error;
@@ -23,9 +24,13 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
     };
 
     $scope.submit = function(){
+        delete $scope.feedbackMessage;
+        delete $scope.errorMessage;
+
         addImageToFeed();
+
         FeedsService.save($scope.feed).then(function(message){
-            $scope.feedBack = message;
+            $scope.feedbackMessage = "Lagret!";
         }, function(error){
             $scope.errorMessage = error;
         });
@@ -33,7 +38,6 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
 
     $scope.previewMd = function(){
         $scope.preview = !$scope.preview;
-        console.log("Swapped preview, preview is now: " + $scope.preview);
     };
 
     fetchFeedInfo();
