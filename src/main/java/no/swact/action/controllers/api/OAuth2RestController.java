@@ -35,7 +35,6 @@ public class OAuth2RestController {
 
     @RequestMapping(value = "/exchange", method = RequestMethod.POST)
     public Token exchange(@RequestBody String token) throws IOException, JoseException {
-        LOG.info(token);
         googleCredential.setAccessToken(token);
         Oauth2 oauth2 = new Oauth2.Builder(new NetHttpTransport(), new JacksonFactory(), googleCredential).setApplicationName(
                 "ACTion").build();
