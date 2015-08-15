@@ -1,7 +1,6 @@
 package no.swact.action.models;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
 @Entity
@@ -11,16 +10,16 @@ public class Feed {
     @GeneratedValue
     private Long id;
 
-    @Column(length = 200)
+    @Column(length = 200, nullable = false)
     private String title;
 
-    @Column(length = 200)
+    @Column(length = 200, nullable = false)
     private String snippet;
 
-    @Column(length = 2000)
+    @Column(length = 2000, nullable = false)
     private String text;
 
-    private ZonedDateTime dateTime;
+    private ZonedDateTime dateTime = ZonedDateTime.now();
 
     @OneToOne
     private UploadedImage image;
