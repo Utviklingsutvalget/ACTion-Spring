@@ -11,5 +11,9 @@ public interface RoleService {
 
     Role save(Role admin);
 
-    List<User> findByName(String s);
+    List<User> findUsersWithRole(String s);
+
+    List<Role> saveIfNotExists(List<Role> roles);
+
+    Role findRoleByName(String roleName);
 }

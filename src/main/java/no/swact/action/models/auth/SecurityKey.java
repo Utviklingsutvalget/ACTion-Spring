@@ -1,6 +1,5 @@
 package no.swact.action.models.auth;
 
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.time.ZonedDateTime;
 import java.util.UUID;

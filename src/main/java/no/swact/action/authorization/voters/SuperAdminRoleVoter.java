@@ -1,6 +1,5 @@
 package no.swact.action.authorization.voters;
 
-import no.swact.action.models.User;
 import no.swact.action.models.auth.Role;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +10,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.List;
 
 public class SuperAdminRoleVoter implements AccessDecisionVoter<Object> {
 
@@ -78,7 +76,7 @@ public class SuperAdminRoleVoter implements AccessDecisionVoter<Object> {
     @Override
     public int vote(final Authentication authentication, final Object object, final Collection<ConfigAttribute> attributes) {
         Collection<? extends GrantedAuthority> roles = authentication.getAuthorities();
-        if(roles.contains(new Role("ADMIN"))) {
+        if (roles.contains(new Role("ADMIN"))) {
             return ACCESS_GRANTED;
         } else {
             return ACCESS_ABSTAIN;

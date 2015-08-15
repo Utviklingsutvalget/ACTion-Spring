@@ -1,7 +1,6 @@
 package no.swact.action.services;
 
 import no.swact.action.models.User;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

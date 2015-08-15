@@ -14,7 +14,7 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Long id;
-    @Column(nullable = false, updatable = false, length = 20)
+    @Column(nullable = false, updatable = false, unique = true, length = 20)
     private String name;
     @ManyToMany
     @JsonIgnore

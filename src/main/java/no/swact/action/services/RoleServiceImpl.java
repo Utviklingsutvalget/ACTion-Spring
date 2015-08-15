@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class RoleServiceImpl implements RoleService {
@@ -25,12 +26,34 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<User> findByName(final String role) {
+    public List<User> findUsersWithRole(final String role) {
         Role byName = roleRepository.findByName(role);
-        if(byName != null) {
+        if (byName != null) {
             return byName.getUsers();
         } else {
             return new ArrayList<>();
         }
+    }
+
+    @Override
+    public List<Role> saveIfNotExists(final List<Role> roles) {
+        List<String> names = roles.stream()
+                .map(Role::getName)
+                .collect(Collectors.toList());
+
+        List<Role> rolesFromDb = roleRepository.findByNameIn(names);
+
+        List<Role> rolesToSave = roles.stream()
+                .filter(role -> !rolesFromDb.contains(role))
+                .collect(Collectors.toList());
+
+        List<Role> save = roleRepository.save(rolesToSave);
+        rolesFromDb.addAll(save);
+        return rolesFromDb;
+    }
+
+    @Override
+    public Role findRoleByName(final String roleName) {
+        return roleRepository.findByName(roleName);
     }
 }

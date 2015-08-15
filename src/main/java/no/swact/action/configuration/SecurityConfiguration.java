@@ -2,7 +2,6 @@ package no.swact.action.configuration;
 
 import no.swact.action.authorization.filters.JWTFilter;
 import no.swact.action.services.AuthenticationProviderImpl;
-import no.swact.action.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

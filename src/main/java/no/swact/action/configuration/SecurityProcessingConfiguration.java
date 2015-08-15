@@ -2,7 +2,6 @@ package no.swact.action.configuration;
 
 import no.swact.action.authorization.CustomAffirmativeBased;
 import no.swact.action.authorization.voters.SuperAdminRoleVoter;
-import no.swact.action.models.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

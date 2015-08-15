@@ -40,7 +40,7 @@ public class CustomAffirmativeBased implements AccessDecisionManager {
     public void decide(final Authentication authentication, final Object object,
                        final Collection<ConfigAttribute> configAttributes)
             throws AccessDeniedException, InsufficientAuthenticationException {
-        
+
         if (authentication instanceof User) {
 
             for (final AccessDecisionVoter<Object> accessDecisionVoter : accessDecisionVoters) {

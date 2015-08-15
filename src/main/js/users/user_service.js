@@ -8,7 +8,7 @@ angular.module('action').service('UserService', ['$http', function ($http) {
     };
 
     this.removeRole = function (user, role) {
-        return $http.delete('/api/users/' + user + '/' + role);
+        return $http.delete('/api/users/' + user + '/roles/' + role);
     };
 
     this.addRole = function (user, role) {

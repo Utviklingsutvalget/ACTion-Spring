@@ -1,10 +1,10 @@
 package no.swact.action.controllers.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import no.swact.action.models.User;
 import no.swact.action.models.auth.Role;
 import no.swact.action.models.exceptions.ResourceNotFoundException;
+import no.swact.action.services.RoleService;
 import no.swact.action.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +26,8 @@ public class UserRestController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RoleService roleService;
 
     @RequestMapping(value = "/me", method = RequestMethod.GET)
     public User me() throws JsonProcessingException {
@@ -47,7 +49,7 @@ public class UserRestController {
     public User getUserByEmail(@PathVariable String prefix) {
         final String email = prefix + User.EMAIL_SUFFIX;
         User byEmail = userService.findByEmail(email);
-        if(byEmail == null) {
+        if (byEmail == null) {
             throw new ResourceNotFoundException("Ingen bruker med epost " + email + " funnet!");
         }
         return byEmail;
@@ -63,24 +65,24 @@ public class UserRestController {
         if (roles.contains(role)) {
             return Collections.singletonMap("status", "role already present");
         } else {
-            roles.add(role);
-            userService.save(fromDb);
+            Role roleFromDb = roleService.findRoleByName(role.getName());
+            Role roleToSave = roleFromDb != null ? roleFromDb : role;
+            roleToSave.addUser(fromDb);
+            roleService.save(roleToSave);
             return Collections.singletonMap("status", "ok");
         }
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @RequestMapping(value = "/{id}/roles/{role}", method = RequestMethod.DELETE)
-    public Map<String, String> removeRoleFromUser(@PathVariable String id, @PathVariable String role) {
-        User fromDb = userService.findById(id);
-        List<Role> roles = fromDb.getRoles();
-        int rolesBefore = roles.size();
-        roles.remove(new Role(role));
-        if (rolesBefore >= roles.size()) {
-            return Collections.singletonMap("status", "role not found");
-        } else {
-            userService.save(fromDb);
+    @RequestMapping(value = "/{id}/roles/{roleName}", method = RequestMethod.DELETE)
+    public Map<String, String> removeRoleFromUser(@PathVariable String id, @PathVariable String roleName) {
+        User dbUser = userService.findById(id);
+        Role role = roleService.findRoleByName(roleName);
+        if (role.getUsers().remove(dbUser)) {
+            roleService.save(role);
             return Collections.singletonMap("status", "ok");
+        } else {
+            return Collections.singletonMap("status", "role not found");
         }
     }
 }

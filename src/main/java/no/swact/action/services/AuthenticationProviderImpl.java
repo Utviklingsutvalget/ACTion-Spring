@@ -14,10 +14,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class AuthenticationProviderImpl implements AuthenticationProvider {
 
+    private static final Logger LOG = LoggerFactory.getLogger(AuthenticationProviderImpl.class);
     @Autowired
     private UserRepository userRepository;
-
-    private static final Logger LOG = LoggerFactory.getLogger(AuthenticationProviderImpl.class);
 
     /**
      * Performs authentication with the same contract as {@link
