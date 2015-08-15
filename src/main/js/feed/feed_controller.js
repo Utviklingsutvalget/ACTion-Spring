@@ -12,7 +12,12 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
         });
     };
 
+    var addImageToFeed = function(){
+        $scope.feed.image = $scope.image;
+    };
+
     $scope.submit = function(){
+        addImageToFeed();
         FeedsService.save($scope.feed).then(function(message){
             $scope.feedBack = message;
         }, function(error){
@@ -24,4 +29,6 @@ angular.module("action").controller("FeedController", ["$scope", "$routeParams",
         $scope.preview = !$scope.preview;
         console.log("Swapped preview, preview is now: " + $scope.preview);
     };
+
+
 }]);
