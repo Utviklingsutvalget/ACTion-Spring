@@ -6,7 +6,15 @@ angular.module('action').controller('InitiationScheduleController', ['$scope', '
             });
         };
 
+        $scope.fetchEvents = function() {
+            InitiationService.getEventsForScheduleCategorized($scope.schedule.id).then(function(response) {
+                console.log(response);
+                $scope.schedule.events = response.data;
+            });
+        };
+
         if(!$scope.schedule) {
+            console.log("Fetching schedule!");
             $scope.fetch($routeParams.id);
         }
     }]);

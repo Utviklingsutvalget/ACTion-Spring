@@ -11,6 +11,11 @@ app.config(['$locationProvider', function($locationProvider) {
 }]);
 
 app.run(['$rootScope', function($rootScope) {
+    $rootScope.refreshFoundation = function(functionToRefresh) {
+        console.log('refreshing foundation');
+        $(document).foundation(functionToRefresh, 'reflow');
+    };
+
     $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
         var route = current.$$route;
         if(route) {

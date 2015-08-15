@@ -7,7 +7,7 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
         })
         .when('/initiation', {
             templateUrl: '/views/initiation/index.html',
-            controller: 'InitiationSchedulesController  '
+            controller: 'InitiationSchedulesController'
         })
         .when('/initiation/new', {
             templateUrl: '/views/initiation/form.html',

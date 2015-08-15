@@ -4,6 +4,7 @@ angular.module('action').controller('FileUploadController', function ($scope, Up
     });
 
     $scope.upload = function (image) {
+        console.log(image);
         if (image) {
             Upload.upload({
                 url: '/api/file/upload',
@@ -11,13 +12,14 @@ angular.module('action').controller('FileUploadController', function ($scope, Up
             }).progress(function (evt) {
                 $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
             }).success(function (data, status, headers, config) {
-                config.image.id = data.id;
-                config.image.url = data.url;
-                $scope.image.error = undefined;
-                $scope.progress = undefined;
+                $scope.$parent.$parent.image = {};
+                $scope.$parent.$parent.image.id = data.id;
+                $scope.$parent.$parent.image.url = data.url;
+                delete $scope.error;
+                delete $scope.progress;
             }).error(function (data) {
-                $scope.progress = undefined;
-                $scope.image.error = data;
+                delete $scope.progress;
+                $scope.error = data;
             });
         }
     };

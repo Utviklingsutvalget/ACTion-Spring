@@ -13,7 +13,7 @@ public class Location {
     @GeneratedValue
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "location")
     private List<InitiationSchedule> initiationSchedules = new ArrayList<>();
 
     private String name;

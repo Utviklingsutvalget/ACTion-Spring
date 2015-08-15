@@ -1,7 +1,8 @@
 package no.swact.action.models.initiation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import no.swact.action.models.Location;
-import no.swact.action.models.initiation.InitiationEvent;
 
 import javax.persistence.*;
 import java.time.Year;
@@ -16,8 +17,8 @@ public class InitiationSchedule {
     @ManyToOne(cascade = CascadeType.ALL)
     private Location location;
     private Year year = Year.now();
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<InitiationEvent> initiationEvents;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "schedules")
+    private List<InitiationEvent> events;
 
     public Long getId() {
         return id;
@@ -43,11 +44,11 @@ public class InitiationSchedule {
         this.year = year;
     }
 
-    public List<InitiationEvent> getInitiationEvents() {
-        return initiationEvents;
+    public List<InitiationEvent> getEvents() {
+        return events;
     }
 
-    public void setInitiationEvents(List<InitiationEvent> initiationEvents) {
-        this.initiationEvents = initiationEvents;
+    public void setEvents(List<InitiationEvent> events) {
+        this.events = events;
     }
 }

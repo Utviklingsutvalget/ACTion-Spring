@@ -21,6 +21,14 @@ public abstract class Event {
     @ManyToMany
     private List<User> attending = new ArrayList<>();
 
+    public UploadedImage getImage() {
+        return image;
+    }
+
+    public void setImage(final UploadedImage image) {
+        this.image = image;
+    }
+
     public Long getId() {
         return id;
     }

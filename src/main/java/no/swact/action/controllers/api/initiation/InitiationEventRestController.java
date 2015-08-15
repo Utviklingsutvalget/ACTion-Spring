@@ -35,7 +35,7 @@ public class InitiationEventRestController {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public String handleException(RuntimeException e) {
+    public String handleBadRequest(RuntimeException e) {
         LOG.error("Error handling request", e);
         return e.getMessage();
     }

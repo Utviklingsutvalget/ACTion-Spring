@@ -116,11 +116,6 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
         return new RequestInitializerInterceptor();
     }
 
-    @Bean
-    public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
-    }
-
     private Properties jpaProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

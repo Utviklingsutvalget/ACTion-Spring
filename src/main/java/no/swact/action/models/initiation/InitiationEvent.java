@@ -1,18 +1,23 @@
 package no.swact.action.models.initiation;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import no.swact.action.models.Event;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class InitiationEvent extends Event {
 
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<InitiationSchedule> schedules;
+    private List<InitiationSchedule> schedules = new ArrayList<>();
 
+    @JsonIgnore
     public List<InitiationSchedule> getSchedules() {
         return schedules;
     }

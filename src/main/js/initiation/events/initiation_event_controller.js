@@ -13,6 +13,7 @@ angular.module('action').controller('InitiationEventController', [
         };
 
         $scope.createEvent = function () {
+            $scope.event.image = $scope.image;
             console.log($scope.event);
             InitiationService.saveEvent($scope.event).then(function (response) {
                 console.log("Saved:");

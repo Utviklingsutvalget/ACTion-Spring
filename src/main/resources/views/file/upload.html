@@ -14,11 +14,10 @@
     </div>
     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 
-    <div class="small-12 medium-6 large-4 columns" ng-model="image">
-        <img ng-src="{{image.url}}" src="">
-        <input type="hidden" ng-value="image.id" name="image"/>
+    <div class="small-12 medium-6 large-4 columns" ng-model="$parent.image">
+        <img ng-src="{{$parent.image.url}}" src="">
     </div>
     <div class="row" ng-model="image">
-        {{image.error}}
+        {{error}}
     </div>
 </div>

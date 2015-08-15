@@ -1,9 +1,11 @@
 package no.swact.action.models;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.InputStream;
@@ -12,16 +14,18 @@ import java.net.URL;
 import java.util.UUID;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class UploadedImage {
 
     @Id
-    @GeneratedValue
-    private UUID id;
+    @Column(length = 32)
+    private String id;
 
     private String name;
 
     private String s3Bucket;
     @Transient
+    @JsonIgnore
     private InputStream inputStream;
 
     public String getName() {
@@ -41,11 +45,11 @@ public class UploadedImage {
         return id + "/" + name;
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(final UUID id) {
+    public void setId(final String id) {
         this.id = id;
     }
 

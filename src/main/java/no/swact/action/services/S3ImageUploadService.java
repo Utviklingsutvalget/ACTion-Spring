@@ -35,8 +35,11 @@ public class S3ImageUploadService implements ImageUploadService {
     @Override
     public UploadedImage save(UploadedImage file) {
         file.setBucket(s3Bucket);
+        String id = UUID.randomUUID().toString().replace("-", "");
+        LOG.info("Setting id: " + id);
+        file.setId(id);
         uploadedImageRepository.save(file); // assigns an id
-
+        LOG.info("Id saved as: " + file.getId());
         ObjectMetadata metadata = new ObjectMetadata();
         PutObjectRequest putObjectRequest = new PutObjectRequest(s3Bucket, file.getActualFileName(), file.getInputStream(), metadata);
         putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead); // public for all
@@ -53,6 +56,6 @@ public class S3ImageUploadService implements ImageUploadService {
     @Override
     public UploadedImage findOne(final String uploadedFileId) {
         LOG.info("Querying for uploaded file:" + uploadedFileId);
-        return uploadedImageRepository.findOne(UUID.fromString(uploadedFileId));
+        return uploadedImageRepository.findOne(uploadedFileId);
     }
 }

@@ -11,4 +11,6 @@ public interface InitiationEventService {
     InitiationEvent findOne(Long id);
 
     InitiationEvent save(InitiationEvent initiationEvent);
+
+    List<InitiationEvent> findAllEventsForScheduleId(Long id);
 }

@@ -1,0 +1,14 @@
+<ul class="tabs" data-tab>
+    <li class="tab-title" ng-repeat="schedule in schedules"><a ng-href="#schedule{{schedule.id}}">{{schedule.location.name}}</a></li>
+</ul>
+<div class="tabs-content">
+    <div ng-repeat="schedule in schedules" class="content" id="schedule{{schedule.id}}" ng-controller="InitiationScheduleController" ng-init="fetchEvents()">
+        <h3>Eventer for {{schedule.location.name}}</h3>
+
+        <ul class="pricing-table" ng-repeat="event in schedule.events">
+            <li class="price"><img ng-src="{{event.image.url}}" src=""></li>
+            <li class="title">{{event.title}}</li>
+            <li class="description" btf-markdown="event.description"></li>
+        </ul>
+    </div>
+</div>
