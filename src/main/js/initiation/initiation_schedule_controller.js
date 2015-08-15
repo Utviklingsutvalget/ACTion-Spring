@@ -10,6 +10,8 @@ angular.module('action').controller('InitiationScheduleController', ['$scope', '
             InitiationService.getEventsForSchedule($scope.schedule.id).then(function(response) {
                 console.log(response);
                 $scope.schedule.events = response.data;
+
+                $scope.$root.refreshFoundation('tab');
             });
         };
 
