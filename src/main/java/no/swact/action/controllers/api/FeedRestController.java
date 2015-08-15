@@ -33,17 +33,17 @@ public class FeedRestController {
         })).collect(Collectors.toList());
     }
 
+    @RequestMapping("/{id}")
+    public Feed get(@PathVariable Long id){
+        return service.getForId(id);
+    }
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public void save(@RequestBody Feed feed){
         service.save(feed);
     }
 
-    @RequestMapping("/{id}")
-    public Feed feed(@PathVariable Long id){
-        return service.getForId(id);
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public Feed update(@RequestBody Feed feed){
         return service.update(feed);
     }
@@ -51,11 +51,6 @@ public class FeedRestController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id){
         service.delete(id);
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.DELETE)
-    public void delete(@RequestBody Feed feed){
-        service.delete(feed);
     }
 
     @ExceptionHandler(RuntimeException.class)
