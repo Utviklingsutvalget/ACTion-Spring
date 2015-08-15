@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/feed")
@@ -22,7 +23,14 @@ public class FeedRestController {
 
     @RequestMapping("/")
     public List<Feed> all(){
-        return service.all();
+        return service.all().stream().sorted(((e1, e2) -> {
+            if(e1.getDateTime().isAfter(e2.getDateTime())){
+                return -1;
+            }else if(e1.getDateTime().isBefore(e2.getDateTime())){
+                return 1;
+            }
+            return 0;
+        })).collect(Collectors.toList());
     }
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
