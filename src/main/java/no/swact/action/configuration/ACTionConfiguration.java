@@ -2,7 +2,9 @@ package no.swact.action.configuration;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import no.swact.action.authorization.CustomRoleVoter;
 import no.swact.action.authorization.RequestInitializerInterceptor;
+import no.swact.action.models.User;
 import no.swact.action.services.ImageUploadService;
 import no.swact.action.services.S3ImageUploadService;
 import org.jose4j.keys.AesKey;
@@ -19,6 +21,8 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.access.AccessDecisionVoter;
+import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

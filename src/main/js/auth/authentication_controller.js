@@ -18,5 +18,15 @@ angular.module('action').controller('AuthenticationController', ['$scope', '$rou
         $scope.loggedIn = AuthenticationService.isLoggedIn();
     };
 
+    $scope.findRoles = function() {
+        AuthenticationService.getMyRoles().then(function(response) {
+            $scope.roles = response.data;
+        }, function(response) {
+            if(response.code === 401) {
+                $scope.logout();
+            }
+        });
+    };
+
     $scope.loggedIn = AuthenticationService.isLoggedIn();
 }]);

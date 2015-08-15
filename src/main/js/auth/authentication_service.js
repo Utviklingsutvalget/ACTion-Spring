@@ -18,6 +18,10 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
         $http.defaults.headers.common['x-auth'] = jwt.token;
     };
 
+    this.getMyRoles = function() {
+        return $http.get('/api/users/me/roles');
+    };
+
     this.logout = function() {
         delete $http.defaults.headers.common['x-auth'];
         delete $localStorage.jwt;

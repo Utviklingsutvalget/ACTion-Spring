@@ -21,7 +21,7 @@ public class RequestInitializerInterceptor implements WebRequestInterceptor {
 
     @Override
     public void preHandle(final WebRequest webRequest) throws Exception {
-        LOG.debug("Pre-handling request");
+        LOG.info("Pre-handling request");
         SecurityContext securityContext = SecurityContextHolder.getContext();
         if (securityContext == null) {
             securityContext = new SecurityContextImpl();
@@ -29,11 +29,12 @@ public class RequestInitializerInterceptor implements WebRequestInterceptor {
         }
         String jwt = webRequest.getHeader("x-auth");
         if (jwt == null) {
+            LOG.info("No jwt");
             return;
         }
         User user = tokenService.convert(jwt);
         securityContext.setAuthentication(user);
-        LOG.debug("Updated authentication!");
+        LOG.info("Updated authentication!");
     }
 
     @Override

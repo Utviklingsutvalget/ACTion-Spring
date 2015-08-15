@@ -41,7 +41,6 @@ public class OAuth2RestController {
                 "ACTion").build();
         Userinfoplus userinfo = oauth2.userinfo().get().execute();
         User user = new User(userinfo, token);
-
         User saved = userService.save(user);
 
         return jwtTokenService.convert(saved);

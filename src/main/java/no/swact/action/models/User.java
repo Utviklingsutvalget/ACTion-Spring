@@ -2,14 +2,17 @@ package no.swact.action.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.services.oauth2.model.Userinfoplus;
+import no.swact.action.models.auth.Role;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User implements Authentication {
@@ -28,6 +31,9 @@ public class User implements Authentication {
     private String email;
     @Transient
     private String accessToken;
+    @ManyToMany(mappedBy = "users")
+    @JsonIgnore
+    private List<Role> roles = new ArrayList<>();
 
     public User() {
 
@@ -134,5 +140,9 @@ public class User implements Authentication {
     @Override
     public void setAuthenticated(final boolean b) throws IllegalArgumentException {
 
+    }
+
+    public List<Role> getRoles() {
+        return roles;
     }
 }
