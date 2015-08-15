@@ -9,9 +9,11 @@
 <div ng-repeat="feed in feeds">
     <div class="row">
         <div class="medium-10 medium-offset-1 columns">
-            <h1>
-                {{feed.title}}
-            </h1>
+            <a ng-href="/#!/feed/{{feed.id}}">
+                <h1>
+                    {{feed.title}}
+                </h1>
+            </a>
         </div>
     </div>
     <!-- image -->
