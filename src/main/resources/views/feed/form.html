@@ -1,39 +1,61 @@
-<div class="medium-10 medium-offset-1 columns">
-    <form>
-        <label for="title"><h5>Tittel</h5></label>
-        <input id="title" type="text" placeholder="Legg inn tittel" ng-model="feed.title"/>
-
-        <label for="snippet"><h5>Kort beskrivelse</h5></label>
-        <textarea id="snippet" rows="3" placeholder="Gi en kort oppsummering/fotnote" ng-model="feed.snippet"></textarea>
-
-        <label for="text"><h5>Lang beskrivelse</h5></label>
-
-        <ul class="tabs" data-tab role="tablist">
-            <li class="tab-title" ng-class="{active: !preview}" role="presentation"><a href="" ng-click="previewMd()" role="tab" tabindex="0" aria-selected="false">Tekst</a></li>
-            <li class="tab-title" ng-class="{active: preview}" role="presentation"><a href="" ng-click="previewMd()" role="tab" tabindex="0" aria-selected="false">Forhåndsvisning</a></li>
-        </ul>
-
-        <br/>
-        <hr/>
-
-        <div ng-hide="preview">
-            <textarea id="text" rows="12" placeholder="Full beskrivelse (markdown støttet)" ng-model="feed.text"></textarea>
+<div ng-show="errorMessage">
+    <div class="row">
+        <div class="medium-10 medium-offset-1 columns">
+            <div data-alert class="alert-box alert">
+                {{errorMessage}}
+            </div>
         </div>
-        <div ng-show="preview">
-            <div btf-markdown="feed.text"></div>
+    </div>
+</div>
+
+<div ng-show="feedbackMessage">
+    <div class="row">
+        <div class="medium-10 medium-offset-1 columns">
+            <div data-alert class="alert-box success">
+                {{feedbackMessage}}
+            </div>
         </div>
+    </div>
+</div>
 
-        <hr/>
+<div class="row">
+    <div class="medium-10 medium-offset-1 columns">
+        <form>
+            <label for="title"><h5>Tittel</h5></label>
+            <input id="title" type="text" placeholder="Legg inn tittel" ng-model="feed.title"/>
 
-        <label for="image"><h5>Bilde</h5></label>
-        <ng-include id="image" src="'/views/file/upload.html'">
-        </ng-include>
+            <label for="snippet"><h5>Kort beskrivelse</h5></label>
+            <textarea id="snippet" rows="3" placeholder="Gi en kort oppsummering/fotnote" ng-model="feed.snippet"></textarea>
 
-        <br/>
+            <label for="text"><h5>Lang beskrivelse</h5></label>
 
-        <div class="medium-3 medium-offset-9 columns">
-            <div class="button expand large" ng-click="submit()">Lagre</div>
-        </div>
+            <ul class="tabs" data-tab role="tablist">
+                <li class="tab-title" ng-class="{active: !preview}" role="presentation"><a href="" ng-click="previewMd()" role="tab" tabindex="0" aria-selected="false">Tekst</a></li>
+                <li class="tab-title" ng-class="{active: preview}" role="presentation"><a href="" ng-click="previewMd()" role="tab" tabindex="0" aria-selected="false">Forhåndsvisning</a></li>
+            </ul>
 
-    </form>
+            <br/>
+            <hr/>
+
+            <div ng-hide="preview">
+                <textarea id="text" rows="12" placeholder="Full beskrivelse (markdown støttet)" ng-model="feed.text"></textarea>
+            </div>
+            <div ng-show="preview">
+                <div btf-markdown="feed.text"></div>
+            </div>
+
+            <hr/>
+
+            <label for="image"><h5>Bilde</h5></label>
+            <ng-include id="image" src="'/views/file/upload.html'">
+            </ng-include>
+
+            <br/>
+
+            <div class="medium-3 medium-offset-9 columns">
+                <div class="button expand large" ng-click="submit()">Lagre</div>
+            </div>
+
+        </form>
+    </div>
 </div>
