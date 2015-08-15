@@ -1,6 +1,7 @@
 package no.swact.action.configuration;
 
 import no.swact.action.authorization.filters.JWTFilter;
+import no.swact.action.services.AuthenticationProviderImpl;
 import no.swact.action.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     JWTFilter filter;
 
     @Autowired
-    private UserService userService;
+    private AuthenticationProviderImpl authenticationProvider;
 
     public SecurityConfiguration() {
         super(true);
@@ -35,7 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .servletApi().and()
                 //.headers().cacheControl().and().and()
                 .authorizeRequests()
-
+                .filterSecurityInterceptorOncePerRequest(true)
                         // Allow anonymous resource requests
                 .antMatchers("/").permitAll()
                 .antMatchers("/favicon.ico").permitAll()
@@ -56,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(userService);
+        auth.authenticationProvider(authenticationProvider);
     }
 
     @Bean

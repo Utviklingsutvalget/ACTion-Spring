@@ -8,10 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +16,7 @@ import java.util.List;
 @Entity
 public class User implements Authentication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(User.class);
+    public static final String EMAIL_SUFFIX = "@student.westerdals.no";
     @Id
     private String id;
 
@@ -31,8 +28,10 @@ public class User implements Authentication {
 
     private String name;
 
+    @Column(nullable = false, unique = true, length = 50)
     private String email;
     @Transient
+    @JsonIgnore
     private String accessToken;
     @ManyToMany(mappedBy = "users")
     @JsonIgnore
@@ -112,7 +111,6 @@ public class User implements Authentication {
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        LOG.info("User " + id + " has been asked to output granted authorities");
         return roles;
     }
 

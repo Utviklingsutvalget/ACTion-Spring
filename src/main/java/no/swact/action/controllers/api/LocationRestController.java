@@ -20,7 +20,7 @@ public class LocationRestController {
         return locationService.findAll();
     }
 
-    @PreAuthorize("hasRole('ADMIN_MEGA')")
+    @PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public Location create(@RequestBody Location location) {
         return locationService.save(location);

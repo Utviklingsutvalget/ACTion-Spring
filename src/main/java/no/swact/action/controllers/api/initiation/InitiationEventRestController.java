@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +24,14 @@ public class InitiationEventRestController {
         return initiationEventService.findAll();
     }
 
+    @PreAuthorize("hasRole('INITIATION')")
     @RequestMapping(value = "", method = RequestMethod.POST)
     public InitiationEvent save(@RequestBody InitiationEvent initiationEvent) {
         return initiationEventService.save(initiationEvent);
+    }
+
+    public InitiationEvent update(@RequestBody InitiationEvent initiationEvent) {
+        return initiationEventService.update(initiationEvent);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

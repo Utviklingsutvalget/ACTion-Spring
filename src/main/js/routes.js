@@ -13,6 +13,10 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/initiation/form.html',
             controller: 'InitiationSchedulesController'
         })
+        .when('/initiation/users', {
+            templateUrl: '/views/initiation/users/index.html',
+            controller: 'InitiationAdminsController'
+        })
         .when('/initiation/:id', {
             templateUrl: '/views/initiation/show.html',
             controller: 'InitiationScheduleController'
