@@ -56,6 +56,10 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
             templateUrl: '/views/feed/index.html',
             controller: 'FeedsController'
         })
+        .when('/feed/:id', {
+            templateUrl: '/views/feed/show.html',
+            controller: 'FeedsController'
+        })
         .otherwise({
             title: '404',
             templateUrl: '/views/notFound.html'
