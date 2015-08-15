@@ -43,11 +43,6 @@ public class FeedRestController {
         service.save(feed);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public Feed update(@RequestBody Feed feed){
-        return service.update(feed);
-    }
-
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable Long id){
         service.delete(id);
