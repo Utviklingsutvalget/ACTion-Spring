@@ -2,14 +2,9 @@ package no.swact.action.configuration;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import no.swact.action.authorization.CustomRoleVoter;
-import no.swact.action.authorization.RequestInitializerInterceptor;
-import no.swact.action.models.User;
 import no.swact.action.services.ImageUploadService;
 import no.swact.action.services.S3ImageUploadService;
 import org.jose4j.keys.AesKey;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,14 +12,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.web.config.SpringDataWebConfiguration;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.security.access.AccessDecisionVoter;
-import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.resource.PathResourceResolver;
 
@@ -38,11 +28,9 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "no.swact.action.repositories")
 public class ACTionConfiguration extends SpringDataWebConfiguration {
 
-    private static final Logger LOG = LoggerFactory.getLogger(ACTionConfiguration.class);
     public static final String AWS_S3_BUCKET = "aws.s3.bucket";
     public static final String AWS_ACCESS_KEY = "aws.access.key";
     public static final String AWS_SECRET_KEY = "aws.secret.key";
-
     @Autowired
     private Environment env;
 
@@ -108,16 +96,6 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
         emf.setJpaVendorAdapter(vendorAdapter);
         emf.setJpaProperties(jpaProperties());
         return emf;
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addWebRequestInterceptor(requestInitializerInterceptor());
-    }
-
-    @Bean
-    public RequestInitializerInterceptor requestInitializerInterceptor() {
-        return new RequestInitializerInterceptor();
     }
 
     private Properties jpaProperties() {

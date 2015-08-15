@@ -45,7 +45,7 @@ public class InitiationEventServiceImpl implements InitiationEventService {
 
     private void attachImage(final InitiationEvent initiationEvent) {
         UploadedImage image = initiationEvent.getImage();
-        if(image != null) {
+        if (image != null) {
             String id = image.getId();
             LOG.info("Resetting image from id: " + id);
             UploadedImage one = imageRepository.findOne(id);

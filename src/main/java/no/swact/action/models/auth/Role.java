@@ -71,7 +71,7 @@ public class Role implements GrantedAuthority {
     @Override
     @JsonIgnore
     public String getAuthority() {
-        return name;
+        return "ROLE_" + name;
     }
 
     public void addUser(final User user) {

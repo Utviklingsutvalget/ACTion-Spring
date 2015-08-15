@@ -24,7 +24,7 @@ public class FileUploadRestController {
     public UploadedImage postFile(@RequestParam("file") MultipartFile file) throws IOException {
         UploadedImage s3File = new UploadedImage();
         s3File.setName(file.getName());
-        try(InputStream inputStream = file.getInputStream()) {
+        try (InputStream inputStream = file.getInputStream()) {
             s3File.setInputStream(inputStream);
             return fileService.save(s3File);
         }

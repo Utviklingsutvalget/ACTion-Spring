@@ -3,6 +3,8 @@ package no.swact.action.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import no.swact.action.models.auth.Role;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -17,6 +19,7 @@ import java.util.List;
 @Entity
 public class User implements Authentication {
 
+    private static final Logger LOG = LoggerFactory.getLogger(User.class);
     @Id
     private String id;
 
@@ -108,8 +111,9 @@ public class User implements Authentication {
 
     @JsonIgnore
     @Override
-    public Collection<GrantedAuthority> getAuthorities() {
-        return new ArrayList<>();
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        LOG.info("User " + id + " has been asked to output granted authorities");
+        return roles;
     }
 
     @JsonIgnore
@@ -133,7 +137,7 @@ public class User implements Authentication {
     @JsonIgnore
     @Override
     public boolean isAuthenticated() {
-        return accessToken != null;
+        return true;
     }
 
     @JsonIgnore

@@ -11,7 +11,6 @@ import javax.persistence.Transient;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.UUID;
 
 @Entity
 @JsonIgnoreProperties(ignoreUnknown = true)

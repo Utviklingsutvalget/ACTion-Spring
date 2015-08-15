@@ -1,30 +1,76 @@
 package no.swact.action.configuration;
 
 import no.swact.action.authorization.filters.JWTFilter;
+import no.swact.action.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    /**
-     * Override this method to configure {@link WebSecurity}. For example, if you wish to
-     * ignore certain requests.
-     *
-     * @param web
-     */
-    @Override
-    public void configure(final WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers(HttpMethod.POST, "/api/authenticate/exchange")
-                .antMatchers(HttpMethod.GET, "/**")
-        ;
+    @Autowired
+    JWTFilter filter;
+
+    @Autowired
+    private UserService userService;
+
+    public SecurityConfiguration() {
+        super(true);
     }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .exceptionHandling().and()
+                .anonymous().and()
+                .servletApi().and()
+                //.headers().cacheControl().and().and()
+                .authorizeRequests()
+
+                        // Allow anonymous resource requests
+                .antMatchers("/").permitAll()
+                .antMatchers("/favicon.ico").permitAll()
+                .antMatchers("/assets/**").permitAll()
+                .antMatchers("/views/**").permitAll()
+
+                // Allow anonymous logins
+                .antMatchers(HttpMethod.POST, "/authenticate/exchange").permitAll()
+                .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
+
+                .antMatchers(HttpMethod.POST, "/api/**").fullyAuthenticated()
+                // All other request need to be authenticated
+                .anyRequest().permitAll().and()
+
+                // Custom Token based authentication based on the header previously given to the client
+                .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(userService);
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+    /*
+    @Bean
+    public TokenAuthenticationService tokenAuthenticationService() {
+        return tokenAuthenticationService;
+    }
+    */
 
     @Bean
     public JWTFilter jwtFilter() {

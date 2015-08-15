@@ -6,7 +6,7 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
         console.log('Not setting default header for x-auth');
     }
     this.exchange = function(token) {
-        return $http.post('/api/authenticate/exchange', token);
+        return $http.post('/authenticate/exchange', token);
     };
 
     this.isLoggedIn = function() {

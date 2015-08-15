@@ -13,11 +13,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -56,19 +56,6 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-        User user = userRepository.findOne(id);
-        if (user == null) {
-            return new org.springframework.security.core.userdetails.User(
-                    " ", " ", true, true, true, true,
-                    getAuthorities(Collections.singletonList(roleRepository.findByName("ROLE_USER"))));
-        }
-
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(), "", true, true, true,
-                true, getAuthorities(user.getRoles()));
-    }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
         return getGrantedAuthorities(getPrivileges(roles));
@@ -104,8 +91,12 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public Authentication authenticate(final Authentication authentication) throws AuthenticationException {
-        LOG.info("Asked to authorize " + String.valueOf(authentication));
-        return authentication;
+        LOG.debug("Asked to authenticate " + authentication.getPrincipal());
+        if (authentication.getPrincipal() == null) {
+            return null;
+        }
+
+        return userRepository.findOne((String) authentication.getPrincipal());
     }
 
     /**
@@ -127,6 +118,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public boolean supports(final Class<?> authentication) {
-        return User.class.isAssignableFrom(authentication);
+        boolean assignableFrom = authentication.isAssignableFrom(User.class);
+        LOG.debug("Asked if we support " + authentication.getSimpleName() +
+                ", which we " + (assignableFrom ? "do" : "don't"));
+        return assignableFrom;
     }
 }

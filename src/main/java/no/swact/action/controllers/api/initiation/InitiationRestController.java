@@ -10,11 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/initiation")
@@ -41,7 +37,7 @@ public class InitiationRestController {
         return initiationService.findOne(id);
     }
 
-    @RequestMapping(value="/{id}/events", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/events", method = RequestMethod.GET)
     public List<InitiationEvent> getEvents(@PathVariable Long id) {
         LOG.info("Getting events for schedule by id: " + id);
         List<InitiationEvent> allEventsForScheduleId = initiationEventService.findAllEventsForScheduleId(id);

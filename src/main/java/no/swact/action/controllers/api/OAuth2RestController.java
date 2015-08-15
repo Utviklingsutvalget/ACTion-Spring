@@ -5,8 +5,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfoplus;
-import no.swact.action.models.auth.Token;
 import no.swact.action.models.User;
+import no.swact.action.models.auth.Token;
 import no.swact.action.services.JwtTokenService;
 import no.swact.action.services.UserService;
 import org.jose4j.lang.JoseException;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/authenticate")
+@RequestMapping("/authenticate")
 public class OAuth2RestController {
 
     private static final Logger LOG = LoggerFactory.getLogger(OAuth2RestController.class);
