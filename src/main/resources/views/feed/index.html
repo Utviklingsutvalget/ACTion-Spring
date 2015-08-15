@@ -1,4 +1,4 @@
-<div ng-show="feeds === undefined || feeds.length === 0">
+<div ng-show="feeds === undefined || feeds === [] || feeds.length === 0">
     <div class="medium-12 columns">
         <p class="text-center">
             Your feed currently has no entries. Consider making one!
@@ -24,7 +24,9 @@
         </div>
         <div class="medium-8 columns">
             <p>
-                {{feed.snippet}}
+                <a ng-href="/#!/feed/{{feed.id}}">
+                    {{feed.snippet}}
+                </a>
             </p>
         </div>
     </div>
@@ -33,12 +35,8 @@
             <hr/>
         </div>
     </div>
+</div>
 
-    <!--
-    <div class="row">
-        <div class="medium-10 medium-offset-1 columns">
-            <div btf-markdown="feed.snippet"></div>
-        </div>
-    </div>
-    -->
+<div class="medium-10 medium-offset-1 columns">
+    <a class="button" href="/#!/feed/new">Opprett Feed post</a>
 </div>
