@@ -12,7 +12,7 @@ angular.module('action').service('InitiationService', ['$http', function ($http)
     };
 
     this.getEventsForSchedule = function (id) {
-        return $http.get('/api/initiation/' + id + '/events')
+        return $http.get('/api/initiation/' + id + '/events');
     };
 
     this.getAllEvents = function () {
