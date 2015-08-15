@@ -7,7 +7,11 @@ var app = angular.module('action', [
 ]);
 
 app.config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: true,
+        rewriteLinks: true
+    }).hashPrefix('!');
 }]);
 
 app.run(['$rootScope', function($rootScope) {

@@ -8,6 +8,11 @@ angular.module('action').controller('AuthenticationController', ['$scope', '$rou
         });
     });
 
+    $scope.getBase = function() {
+        var port = $location.$$port === 8080 ? ':' + $location.$$port : '';
+        return $location.$$protocol + "://" + $location.$$host + port;
+    };
+
     $scope.$on('oauth:logout', function() {
         $scope.logout();
     });
