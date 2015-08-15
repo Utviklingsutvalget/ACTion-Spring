@@ -7,7 +7,7 @@ angular.module('action').controller('InitiationScheduleController', ['$scope', '
         };
 
         $scope.fetchEvents = function() {
-            InitiationService.getEventsForScheduleCategorized($scope.schedule.id).then(function(response) {
+            InitiationService.getEventsForSchedule($scope.schedule.id).then(function(response) {
                 console.log(response);
                 $scope.schedule.events = response.data;
             });
