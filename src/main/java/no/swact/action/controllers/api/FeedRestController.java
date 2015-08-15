@@ -21,7 +21,7 @@ public class FeedRestController {
     @Autowired
     private FeedService service;
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<Feed> all(){
         return service.all().stream().sorted(((e1, e2) -> {
             if(e1.getDateTime().isAfter(e2.getDateTime())){
@@ -33,7 +33,7 @@ public class FeedRestController {
         })).collect(Collectors.toList());
     }
 
-    @RequestMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Feed get(@PathVariable Long id){
         return service.getForId(id);
     }
