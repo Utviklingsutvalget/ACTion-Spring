@@ -19,7 +19,7 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
     };
 
     this.getMyRoles = function() {
-        return $http.get('/api/users/me/roles');
+        return $http.get('/api/users/roles');
     };
 
     this.logout = function() {

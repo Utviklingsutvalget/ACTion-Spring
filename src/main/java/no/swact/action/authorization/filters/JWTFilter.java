@@ -5,6 +5,7 @@ import no.swact.action.services.JwtTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.web.filter.GenericFilterBean;
@@ -32,20 +33,21 @@ public class JWTFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
             ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
+        SecurityContext context = SecurityContextHolder.getContext();
         logger.debug("Filtering");
 
         String stringToken = req.getHeader("x-auth");
-        if (stringToken == null) {
-            logger.debug("No token");
-            //throw new InsufficientAuthenticationException("Authorization header not found");
-        } else {
+        if (stringToken != null) {
             logger.debug("Getting user");
             User user = jwtTokenService.convert(stringToken);
             logger.debug("Got user");
             Authentication auth = authenticationManager.authenticate(user);
             logger.debug("Got auth");
-            SecurityContextHolder.getContext().setAuthentication(auth);
+            context.setAuthentication(auth);
             logger.debug("Authorized");
+        } else {
+            logger.debug("No token");
+            //throw new InsufficientAuthenticationException("Authorization header not found");
         }
         logger.debug("Filtered");
         chain.doFilter(request, response);

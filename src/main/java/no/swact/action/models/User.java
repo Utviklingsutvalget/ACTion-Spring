@@ -3,15 +3,10 @@ package no.swact.action.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.api.services.oauth2.model.Userinfoplus;
 import no.swact.action.models.auth.Role;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -19,7 +14,7 @@ import java.util.List;
 @Entity
 public class User implements Authentication {
 
-    private static final Logger LOG = LoggerFactory.getLogger(User.class);
+    public static final String EMAIL_SUFFIX = "@student.westerdals.no";
     @Id
     private String id;
 
@@ -31,10 +26,12 @@ public class User implements Authentication {
 
     private String name;
 
+    @Column(nullable = false, unique = true, length = 50)
     private String email;
     @Transient
+    @JsonIgnore
     private String accessToken;
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users")
     @JsonIgnore
     private List<Role> roles = new ArrayList<>();
 
@@ -51,6 +48,22 @@ public class User implements Authentication {
         this.name = userInfo.getName();
         this.familyName = userInfo.getFamilyName();
 
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final User user = (User) o;
+
+        return !(id != null ? !id.equals(user.id) : user.id != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     public String getAccessToken() {
@@ -112,7 +125,6 @@ public class User implements Authentication {
     @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        LOG.info("User " + id + " has been asked to output granted authorities");
         return roles;
     }
 
@@ -148,5 +160,9 @@ public class User implements Authentication {
 
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public void setRoles(final List<Role> roles) {
+        this.roles = roles;
     }
 }

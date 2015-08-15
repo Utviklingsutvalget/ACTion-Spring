@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RoleRepository extends JpaRepository<Role, String> {
+public interface RoleRepository extends JpaRepository<Role, Long> {
 
-    Role findByName(String role_user);
+    Role findByName(String name);
 
     List<Role> findByUsersContaining(User user);
+
+    List<Role> findByNameIn(List<String> names);
 }

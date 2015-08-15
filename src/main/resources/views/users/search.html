@@ -1,0 +1,13 @@
+<div ng-controller="UsersController">
+    <div class="row collapse">
+        <label>Søk opp bruker</label>
+
+        <div class="small-6 columns">
+            <input type="text" placeholder="epost" ng-model="prefix" ng-change="findByEmail(prefix)"/>
+        </div>
+        <div class="small-6 columns">
+            <span class="postfix">{{postfix}}</span>
+        </div>
+    </div>
+    <div class="alert" ng-show="error">{{error}}</div>
+</div>

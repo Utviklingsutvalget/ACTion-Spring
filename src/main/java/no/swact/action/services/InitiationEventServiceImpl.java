@@ -71,4 +71,9 @@ public class InitiationEventServiceImpl implements InitiationEventService {
     public List<InitiationEvent> findAllEventsForScheduleId(final Long id) {
         return initiationRepository.getOne(id).getEvents();
     }
+
+    @Override
+    public InitiationEvent update(final InitiationEvent initiationEvent) {
+        return save(initiationEvent);
+    }
 }

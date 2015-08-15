@@ -1,0 +1,41 @@
+<div>
+    <div class="small-12 medium-6 columns">
+        <ng-include src="'/views/users/search.html'"></ng-include>
+        <table ng-show="user">
+            <thead>
+            <tr>
+                <th width="150">Epost</th>
+                <th width="150">Navn</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="button success" ng-click="addToCommittee(user)">Legg til</button>
+    </div>
+    &nbsp;
+    <div class="small-12 medium-6 columns">
+        <table>
+            <thead>
+            <tr>
+                <th width="150">Epost</th>
+                <th width="150">Navn</th>
+                <th width="150"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
+                <td>
+                    <button class="button alert" ng-click="removeFromCommittee(user)">Slett</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
