@@ -21,7 +21,7 @@ public class FeedRestController {
     @Autowired
     private FeedService service;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     public List<Feed> all(){
         return service.all().stream().sorted(((e1, e2) -> {
             if(e1.getDateTime().isAfter(e2.getDateTime())){
@@ -38,7 +38,7 @@ public class FeedRestController {
         return service.getForId(id);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public void save(@RequestBody Feed feed){
         service.save(feed);
     }
