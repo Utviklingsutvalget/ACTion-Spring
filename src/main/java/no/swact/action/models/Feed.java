@@ -17,6 +17,9 @@ public class Feed {
     @Column(length = 200)
     private String snippet;
 
+    @Column(length = 2000)
+    private String text;
+
     private ZonedDateTime dateTime;
 
     @OneToOne
@@ -63,5 +66,13 @@ public class Feed {
 
     public void setImage(UploadedImage image) {
         this.image = image;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }
