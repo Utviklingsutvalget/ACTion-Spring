@@ -1,10 +1,10 @@
 angular.module("action").controller("FeedsController", ["$scope", "FeedsService", function($scope, FeedsService){
 
-    $scope.feeds = function(){
-        FeedsService.all().when(function(feeds){
-            return feeds;
-        }, function(){
-            return;
+    var fetchAllFeeds = function(){
+        FeedsService.all().then(function(object){
+            $scope.feeds = object.data;
         });
     };
+
+    fetchAllFeeds();
 }]);
