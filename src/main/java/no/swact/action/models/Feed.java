@@ -19,12 +19,21 @@ public class Feed {
     @Column(length = 2000, nullable = false)
     private String text;
 
+    @ManyToOne
+    private User postedBy;
     private ZonedDateTime dateTime = ZonedDateTime.now();
-
     @OneToOne
     private UploadedImage image;
 
     public Feed() {
+    }
+
+    public User getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(User postedBy) {
+        this.postedBy = postedBy;
     }
 
     public Long getId() {
