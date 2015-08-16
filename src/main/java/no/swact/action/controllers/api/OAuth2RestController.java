@@ -40,6 +40,9 @@ public class OAuth2RestController {
                 "ACTion").build();
         Userinfoplus userinfo = oauth2.userinfo().get().execute();
         User user = new User(userinfo, token);
+        if(!user.getEmail().endsWith(User.EMAIL_SUFFIX)) {
+            throw new RuntimeException("Epostformat ikke støttet. Vennligst logg inn med din epost " + User.EMAIL_SUFFIX);
+        }
         User saved = userService.save(user);
 
         return jwtTokenService.convert(saved);
