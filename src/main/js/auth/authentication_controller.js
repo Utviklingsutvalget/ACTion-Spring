@@ -5,6 +5,7 @@ angular.module('action').controller('AuthenticationController', ['$scope', '$rou
             console.log("Logged in as:");
             AuthenticationService.login(jwt);
             $scope.loggedIn = AuthenticationService.isLoggedIn();
+            $location.path('/me');
         });
     });
 
@@ -29,7 +30,7 @@ angular.module('action').controller('AuthenticationController', ['$scope', '$rou
 
     $scope.logout = function() {
         AuthenticationService.logout();
-        $location.path('/');
+        $location.path('/authenticate');
         $scope.loggedIn = AuthenticationService.isLoggedIn();
     };
 

@@ -15,6 +15,7 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
 
     this.login = function(jwt) {
         $localStorage.jwt = jwt;
+        delete $localStorage.token;
         $http.defaults.headers.common['x-auth'] = jwt.token;
     };
 
@@ -25,6 +26,5 @@ angular.module('action').service('AuthenticationService', ['$http', '$localStora
     this.logout = function() {
         delete $http.defaults.headers.common['x-auth'];
         delete $localStorage.jwt;
-        delete $localStorage.token;
     };
 }]);
