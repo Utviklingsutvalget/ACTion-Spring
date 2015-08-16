@@ -103,7 +103,7 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
                 "no.swact.action.models"
         );
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        vendorAdapter.setGenerateDdl(true);
+        vendorAdapter.setGenerateDdl(false);
         emf.setJpaVendorAdapter(vendorAdapter);
         emf.setJpaProperties(jpaProperties());
         return emf;
