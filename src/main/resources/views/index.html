@@ -3,14 +3,14 @@
 <head>
     <title>SWACT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <base href="/"/>
-    <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16" />
-    <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link href="/assets/images/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76" />
-    <link href="/assets/images/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
-    <link href="/assets/images/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+    <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16"/>
+    <link href="/assets/images/apple-touch-icon.png" rel="apple-touch-icon"/>
+    <link href="/assets/images/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"/>
+    <link href="/assets/images/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"/>
+    <link href="/assets/images/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"/>
     <script src="/assets/js/app.js"></script>
     <link media="screen" rel="stylesheet" href="/assets/styles/main.css"/>
 </head>
@@ -69,8 +69,10 @@
             <!--<li><a class="headertext" href="/events">Eventer </a></li>-->
             <li><a class="headertext" href="/#!/initiation">Fadderuke </a></li>
             <!--<li><a class="headertext" href="/clubs">Utvalg </a></li>-->
-            <li ng-show="loggedIn === false"><a class="headertext" href="/#!/authenticate">Login </a></li>
-            <li ng-show="loggedIn === true"><a class="headertext" href="/#!/me">Profil </a></li>
+            <li>
+                <a class="headertext" ng-show="loggedIn === false" href="/#!/authenticate">Login </a>
+                <a class="headertext" ng-show="loggedIn === true" href="/#!/me">Profil </a>
+            </li>
 
         </ul>
 
@@ -85,7 +87,7 @@
 <div class="buttonpanellarge row text-center show-for-medium-up">
 
     <div class="medium-9 medium-centered columns">
-        <ul class="small-block-grid-3 medium-block-grid-4 large-block-grid-4 text-center">
+        <ul class="medium-block-grid-3 text-center">
             <li><a class="headertext" href="/#!/feed">Feed </a></li>
             <!--<li><a class="headertext" href="/events">Eventer </a></li>-->
             <li><a class="headertext" href="/#!/initiation">Fadderuke </a></li>
@@ -130,7 +132,7 @@
             <div class="line lineright"></div>
         </div>
         <div class="small-6 columns text-center">
-            <h6 class="footer-text">Artefakt under utvikling. ©2015 #SWACT<br/></h6>
+            <h6 class="footer-text">©2015 #SWACT<br/></h6>
         </div>
         <div class="small-3 columns">
             <div class="line lineleft"></div>
