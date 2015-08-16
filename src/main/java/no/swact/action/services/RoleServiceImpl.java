@@ -18,11 +18,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role save(final Role role) {
-        if (role.getId() != null) {
-            throw new RuntimeException("Role had ID set: use update instead!");
-        } else {
-            return roleRepository.save(role);
-        }
+        return roleRepository.save(role);
     }
 
     @Override
