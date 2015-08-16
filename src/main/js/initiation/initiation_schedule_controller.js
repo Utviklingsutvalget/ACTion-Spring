@@ -7,14 +7,16 @@ angular.module('action').controller('InitiationScheduleController', ['$scope', '
             });
         };
 
-        $scope.formatToDateOnly = function(stamp) {
+        $scope.formatToDateOnly = function(event) {
+            var stamp = event.dateTime;
             stamp = amMoment.preprocessDate(stamp);
             var date = moment(stamp);
             if (!date.isValid()) {
                 return '';
             }
 
-            return amMoment.applyTimezone(date).format('Do MMMM');
+            var timeZoned = amMoment.applyTimezone(date);
+            return timeZoned.format('dddd Do MMMM');
         };
 
         $scope.fetchEvents = function() {

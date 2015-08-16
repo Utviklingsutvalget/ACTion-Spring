@@ -30,16 +30,16 @@
             </div>
         </div>
         <div class="row">
-            <div class="medium-12 columns" ng-repeat="(date, events) in schedule.events | groupBy: formatToDateOnly('dateTime')">
+            <div class="medium-12 columns" ng-repeat="(date, events) in schedule.events | groupBy: formatToDateOnly">
                 <h3>{{date}}</h3>
                 <div ng-repeat="event in events">
                     <div class="small-2 medium-1  columns">
-                        <p><strong>{{event.dateTime | amDateFormat:'hh:mm'}}</strong></p>
+                        <p><strong>{{event.dateTime | amDateFormat:'HH:mm'}}</strong></p>
                     </div>
                     <div class="small-10 medium-11 columns">
                         <dl>
                             <dt>{{event.title}}</dt>
-                            <dd btf-markdown="event.desciption"></dd>
+                            <dd btf-markdown="event.description"></dd>
                         </dl>
                     </div>
                 </div>
