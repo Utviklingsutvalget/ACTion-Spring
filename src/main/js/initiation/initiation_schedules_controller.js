@@ -3,8 +3,8 @@ angular.module('action').controller('InitiationSchedulesController', ['$scope', 
     function ($scope, $routeParams, $location, InitiationService) {
 
         $scope.fetchAll = function() {
-            InitiationService.findAll().success(function(InitiationSchedules) {
-                $scope.schedules = InitiationSchedules;
+            InitiationService.findAll().success(function(schedules) {
+                $scope.schedules = schedules;
             });
         };
 
