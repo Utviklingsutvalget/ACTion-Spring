@@ -20,7 +20,11 @@ angular.module('action').service('InitiationService', ['$http', function ($http)
     };
 
     this.saveEvent = function (event) {
-        return $http.post('/api/initiation/events', event);
+        if (event.id) {
+            return $http.put('/api/initiation/events/' + event.id, event);
+        } else {
+            return $http.post('/api/initiation/events', event);
+        }
     };
 
     this.getEvent = function (id) {

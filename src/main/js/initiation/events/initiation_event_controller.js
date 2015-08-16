@@ -7,8 +7,11 @@ angular.module('action').controller('InitiationEventController', [
         };
 
         $scope.findEvent = function (id) {
-            return InitiationService.getEvent(id).then(function(reponse) {
-                $scope.event = reponse.data;
+            return InitiationService.getEvent(id).then(function(response) {
+                console.log(response.data);
+                $scope.event = response.data;
+                $scope.image = $scope.event.image;
+                $scope.setImage = $scope.event.image;
             });
         };
 

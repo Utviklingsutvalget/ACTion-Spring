@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class InitiationServiceImpl implements InitiationService {
@@ -33,5 +34,14 @@ public class InitiationServiceImpl implements InitiationService {
     @Override
     public InitiationSchedule findOne(final Long id) {
         return initiationRepository.findOne(id);
+    }
+
+    @Override
+    public List<InitiationSchedule> findAll(List<InitiationSchedule> schedules) {
+        return initiationRepository
+                .findAll(schedules.stream()
+                        .map(InitiationSchedule::getId)
+                        .collect(Collectors.toList())
+                );
     }
 }

@@ -5,7 +5,10 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@MappedSuperclass
+@Entity
+@Table(name = "Event")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "eventType")
 public abstract class Event {
 
     @Id
@@ -14,7 +17,7 @@ public abstract class Event {
     private String title;
     private ZonedDateTime dateTime;
     private String place;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private UploadedImage image;
     @Column(length = 350)
     private String description;

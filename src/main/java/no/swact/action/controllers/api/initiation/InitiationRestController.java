@@ -42,8 +42,6 @@ public class InitiationRestController {
         LOG.info("Getting events for schedule by id: " + id);
         List<InitiationEvent> allEventsForScheduleId = initiationEventService.findAllEventsForScheduleId(id);
         LOG.info("Got " + allEventsForScheduleId.size() + " events");
-
-
         return allEventsForScheduleId;
     }
 

@@ -2,6 +2,9 @@ angular.module('action').controller('FileUploadController', function ($scope, Up
     $scope.$watch('image', function () {
         $scope.upload($scope.image);
     });
+    $scope.$watch('$parent.$parent.setImage', function() {
+        $scope.display = $scope.$parent.$parent.setImage;
+    });
 
     $scope.upload = function (image) {
         console.log(image);
@@ -15,6 +18,7 @@ angular.module('action').controller('FileUploadController', function ($scope, Up
                 $scope.$parent.$parent.image = {};
                 $scope.$parent.$parent.image.id = data.id;
                 $scope.$parent.$parent.image.url = data.url;
+                $scope.display = $scope.$parent.$parent.image;
                 delete $scope.error;
                 delete $scope.progress;
             }).error(function (data) {

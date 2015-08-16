@@ -12,7 +12,7 @@
 <div class="small-12 medium-6 columns" ng-controller="InitiationEventsController">
     <h1>Faddereventer</h1>
 
-    <div ng-repeat="event in events"><a ng-href="/#!/initiation/events/{{event.id}}">{{event.title}}</a></div>
+    <div ng-repeat="event in events"><a ng-href="/#!/initiation/events/{{event.id}}">{{event.title}}</a><a ng-href="/#!/initiation/events/{{event.id}}/edit" class="button">Endre</a></div>
 
     <a href="/#!/initiation/events/new" class="button">Opprett ny fadderevent</a>
 </div>
