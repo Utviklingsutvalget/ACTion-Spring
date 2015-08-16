@@ -5,7 +5,10 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@MappedSuperclass
+@Entity
+@Table(name = "Event")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "eventType")
 public abstract class Event {
 
     @Id

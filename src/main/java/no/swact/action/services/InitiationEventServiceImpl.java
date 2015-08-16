@@ -37,9 +37,6 @@ public class InitiationEventServiceImpl implements InitiationEventService {
 
     @Override
     public InitiationEvent save(final InitiationEvent initiationEvent) {
-        attachSchedules(initiationEvent);
-        attachImage(initiationEvent);
-
         return initiationEventRepository.save(initiationEvent);
     }
 

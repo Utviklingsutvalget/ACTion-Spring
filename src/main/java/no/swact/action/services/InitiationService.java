@@ -13,4 +13,6 @@ public interface InitiationService {
     InitiationSchedule save(InitiationSchedule initiationSchedule);
 
     InitiationSchedule findOne(Long id);
+
+    List<InitiationSchedule> findAll(List<InitiationSchedule> schedules);
 }

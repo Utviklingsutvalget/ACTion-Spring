@@ -1,5 +1,8 @@
 package no.swact.action.configuration;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.hibernate4.Hibernate4Module;
+import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.json.jackson2.JacksonFactory;
 import no.swact.action.services.ImageUploadService;
@@ -61,6 +64,14 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
         final String s3Bucket = env.getProperty(AWS_S3_BUCKET);
 
         return new S3ImageUploadService(accessKey, secretKey, s3Bucket);
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JSR310Module());
+        objectMapper.registerModule(new Hibernate4Module());
+        return objectMapper;
     }
 
     @Bean
