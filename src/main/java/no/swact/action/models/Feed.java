@@ -4,7 +4,10 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 @Entity
-public class Feed {
+@Table(name = "Feed")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "eventType")
+public abstract class Feed<T> {
 
     @Id
     @GeneratedValue
@@ -26,6 +29,12 @@ public class Feed {
 
     public Feed() {
     }
+
+    public abstract void setPostedBy(T postedBy);
+
+    public abstract T getPostedBy();
+
+    public abstract String getPostedByString();
 
     public Long getId() {
         return id;
