@@ -1,13 +1,13 @@
 <div class="row">
     <div class="medium-10 columns medium-centered text-center">
         <div class="medium-6 columns small-centered">
-            <img class="profile-photo" ng-src="{{user.pictureUrl}}" alt="" />
+            <img class="profile-photo has-tip"
+                 title="Du kan bruke gravatar.com til å endre profilbilde. Lag deg en bruker der med din @student.westerdals.no-mail, og legg til profilbilde. Da skal profilbilde ditt oppdateres her."
+                 ng-src="{{user.pictureUrl}}" alt="" />
             <br/><br/>
-            <div data-alert class="alert-box info radius">
-                Bruk gravatar.com til å endre profilbilde. Lag deg en bruker der med din @student.westerdals.no-mail, og legg til profilbilde.
-                Da skal profilbilde ditt oppdateres her.
-                <a href="#" class="close">&times;</a>
-            </div>
+            <small>
+
+            </small>
         </div>
         <br /><br />
         <h1>{{user.name}}</h1>
