@@ -23,8 +23,8 @@ var sources = [
     'node_modules/oauth-ng/dist/oauth-ng.js',
     'node_modules/angular/angular.min.js',
     'node_modules/ng-file-upload/dist/ng-file-upload-all.min.js',
-    'node_modules/foundation-sites/js/foundation.js',
     'node_modules/foundation-sites/js/vendor/modernizr.js',
+    'node_modules/foundation-sites/js/foundation.js',
 
     'src/main/js/**/*.js'
 ];
