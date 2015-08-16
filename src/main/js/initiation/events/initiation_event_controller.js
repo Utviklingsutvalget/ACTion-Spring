@@ -2,6 +2,10 @@ angular.module('action').controller('InitiationEventController', [
     '$scope', '$routeParams', '$location', 'InitiationService',
     function ($scope, $routeParams, $location, InitiationService) {
 
+        $scope.previewMd = function(){
+            $scope.preview = !$scope.preview;
+        };
+
         $scope.onTimeSet = function (newDate) {
             console.log(newDate);
         };

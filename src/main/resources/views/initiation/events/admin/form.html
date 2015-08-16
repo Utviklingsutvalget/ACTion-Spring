@@ -3,10 +3,37 @@
         <label class="small-12 columns">Tittel
             <input type="text" ng-model="event.title">
         </label>
-        <label class="small-12 columns">
-        <textarea ng-model="event.description" maxlength="350" rows="14" placeholder="Skriv noe om eventet">
-        </textarea>
-        </label>
+
+        <div class="small-12 columns">
+            <label>
+                Sted
+                <input type="text" ng-model="event.place"/>
+            </label>
+        </div>
+
+        <div class="medium-12 columns">
+            <ul class="tabs" data-tab role="tablist">
+                <li class="tab-title" ng-class="{active: !preview}" role="presentation"><a href=""
+                                                                                           ng-click="previewMd()"
+                                                                                           role="tab" tabindex="0"
+                                                                                           aria-selected="false">Tekst</a>
+                </li>
+                <li class="tab-title" ng-class="{active: preview}" role="presentation"><a href="" ng-click="previewMd()"
+                                                                                          role="tab" tabindex="0"
+                                                                                          aria-selected="false">Forhåndsvisning</a>
+                </li>
+            </ul>
+
+            <br/>
+            <hr/>
+            <div ng-hide="preview">
+                <textarea id="text" rows="12" placeholder="Full beskrivelse (markdown støttet)"
+                          ng-model="event.description"></textarea>
+            </div>
+            <div ng-show="preview">
+                <div btf-markdown="event.description"></div>
+            </div>
+        </div>
     </div>
     <div class="medium-6 columns">
         <label class="small-12 columns">Tidspunkt<span ng-show="event.dateTime">: {{event.dateTime | date:'yyyy-MM-dd HH:mm' }}</span>
@@ -16,16 +43,9 @@
 
         </label>
     </div>
-    &nbsp;
-    <div class="medium-6 columns">
-        <label class="small-12 columns">
-            Sted
-            <input type="text" ng-model="event.place"/>
-        </label>
-    </div>
 
     <div ng-controller="InitiationSchedulesController" class="small-12 columns">
-        <div ng-show="schedules">
+        <div ng-show="schedules.length > 0">
             <label class="medium-6 columns">Legg til fadderordninger
                 <select ng-model="schedule"
                         ng-options="schedule.location.name for schedule in schedules track by schedule.id"></select>
@@ -43,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <div ng-hide="schedules.length">
+        <div ng-hide="schedules.length > 0">
             <strong>Det finnes ingen fadderordninger å legge til eventen i!</strong>
         </div>
     </div>
