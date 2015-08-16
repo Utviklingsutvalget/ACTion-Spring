@@ -1,0 +1,20 @@
+<div ng-show="feeds === undefined || feeds === [] || feeds.length === 0">
+    <div class="medium-12 columns">
+        <p class="text-center">
+            Your feed currently has no entries. Consider making one!
+        </p>
+    </div>
+</div>
+
+<div ng-repeat="feed in feeds">
+    <div class="medium-6 columns">
+        <img ng-src="{{feed.image.url}}"/>
+        <h6>{{feed.dateTime}}</h6>
+        <h4><a ng-href="/#!/feed/{{feed.id}}">{{feed.title}}</a></h4>
+        <p>{{feed.snippet}}</p>
+    </div>
+</div>
+
+<div class="medium-10 medium-offset-1 columns">
+    <a class="button" href="/#!/feed/new">Opprett Feed post</a>
+</div>

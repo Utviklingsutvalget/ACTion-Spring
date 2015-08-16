@@ -1,6 +1,10 @@
 angular.module('action').config(['$routeProvider', function ($routeProvider) {
     console.log("Hello");
     $routeProvider
+    	.when('/', {
+            templateUrl: '/views/feed/index.html',
+            controller: 'FeedsController'
+    	})
         .when('/authenticate', {
             title: 'Logg inn',
             templateUrl: '/views/authentication/index.html'
@@ -59,6 +63,22 @@ angular.module('action').config(['$routeProvider', function ($routeProvider) {
         .when('/initiation/events/:id/edit', {
             templateUrl: '/views/initiation/events/admin/form.html',
             controller: 'InitiationEventController'
+        })
+                .when('/feed', {
+            templateUrl: '/views/feed/index.html',
+            controller: 'FeedsController'
+        })
+        .when('/feed/new', {
+            templateUrl: '/views/feed/form.html',
+            controller: 'FeedController'
+        })
+        .when('/feed/:id', {
+            templateUrl: '/views/feed/show.html',
+            controller: 'FeedController'
+        })
+        .when('/feed/:id/edit', {
+            templateUrl: '/views/feed/form.html',
+            controller: 'FeedController'
         })
         .otherwise({
             title: '404',
