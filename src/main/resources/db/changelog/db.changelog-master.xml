@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <changeSet author="vegeiv13" id="1439732416089-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-2">
+        <createTable tableName="event">
+            <column name="eventtype" type="VARCHAR(31)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="datetime" type="BYTEA"/>
+            <column name="description" type="VARCHAR(350)"/>
+            <column name="place" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="image_id" type="VARCHAR(32)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-3">
+        <createTable tableName="event_initiationschedule">
+            <column name="events_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="schedules_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-4">
+        <createTable tableName="event_users">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="attending_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-5">
+        <createTable tableName="feed">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="datetime" type="BYTEA"/>
+            <column name="snippet" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="text" type="VARCHAR(2000)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="image_id" type="VARCHAR(32)"/>
+            <column name="postedby_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-6">
+        <createTable tableName="initiationschedule">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="BYTEA"/>
+            <column name="location_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-7">
+        <createTable tableName="location">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-8">
+        <createTable tableName="role">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-9">
+        <createTable tableName="role_users">
+            <column name="roles_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="users_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-10">
+        <createTable tableName="uploadedimage">
+            <column name="id" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="s3bucket" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-11">
+        <createTable tableName="users">
+            <column name="id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="familyname" type="VARCHAR(255)"/>
+            <column name="givenname" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="pictureurl" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-12">
+        <addPrimaryKey columnNames="id" constraintName="event_pkey" tableName="event"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-13">
+        <addPrimaryKey columnNames="id" constraintName="feed_pkey" tableName="feed"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-14">
+        <addPrimaryKey columnNames="id" constraintName="initiationschedule_pkey" tableName="initiationschedule"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-15">
+        <addPrimaryKey columnNames="id" constraintName="location_pkey" tableName="location"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-16">
+        <addPrimaryKey columnNames="id" constraintName="role_pkey" tableName="role"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-17">
+        <addPrimaryKey columnNames="id" constraintName="uploadedimage_pkey" tableName="uploadedimage"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-18">
+        <addPrimaryKey columnNames="id" constraintName="users_pkey" tableName="users"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-19">
+        <addUniqueConstraint columnNames="name" constraintName="uk_7d8a768x6aiuvmsa24hqiharg" tableName="role"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-20">
+        <addUniqueConstraint columnNames="email" constraintName="uk_ncoa9bfasrql0x4nhmh1plxxy" tableName="users"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-21">
+        <addForeignKeyConstraint baseColumnNames="location_id" baseTableName="initiationschedule" constraintName="fk_1ju0ubeacvsprtg8bx6o383qf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="location"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-22">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="event_users" constraintName="fk_21kdi7c9su86n67cc7idoxjnr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="event"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-23">
+        <addForeignKeyConstraint baseColumnNames="users_id" baseTableName="role_users" constraintName="fk_8588io7ddom0oyhjchqem4kuq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-24">
+        <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="feed" constraintName="fk_e3epo0dchmonjk98mkej9jwwu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="uploadedimage"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-25">
+        <addForeignKeyConstraint baseColumnNames="postedby_id" baseTableName="feed" constraintName="fk_g12p1b5bsy9pu820fld3baaod" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-26">
+        <addForeignKeyConstraint baseColumnNames="events_id" baseTableName="event_initiationschedule" constraintName="fk_j5phr0ib9oa3omm6ap3kw40xu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="event"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-27">
+        <addForeignKeyConstraint baseColumnNames="roles_id" baseTableName="role_users" constraintName="fk_o01hkgy3u00s7am0ubfcr851n" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-28">
+        <addForeignKeyConstraint baseColumnNames="schedules_id" baseTableName="event_initiationschedule" constraintName="fk_qhyoaomdea2aeabsplileerq7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="initiationschedule"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-29">
+        <addForeignKeyConstraint baseColumnNames="attending_id" baseTableName="event_users" constraintName="fk_s8489bdckh2y4idjk52y2y93x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="vegeiv13" id="1439732416089-30">
+        <addForeignKeyConstraint baseColumnNames="image_id" baseTableName="event" constraintName="fk_tcds1k0ppual5j681miy09ea5" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="uploadedimage"/>
+    </changeSet>
+</databaseChangeLog>
