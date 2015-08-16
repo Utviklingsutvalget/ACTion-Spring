@@ -1,4 +1,4 @@
-angular.module('action').controller('FileUploadController', function ($scope, Upload) {
+angular.module('action').controller('FileUploadController', ['$scope', 'Upload', function ($scope, Upload) {
     $scope.$watch('image', function () {
         $scope.upload($scope.image);
     });
@@ -27,4 +27,4 @@ angular.module('action').controller('FileUploadController', function ($scope, Up
             });
         }
     };
-});
+}]);
