@@ -1,6 +1,7 @@
 package no.swact.action.configuration;
 
 import no.swact.action.authorization.CustomAffirmativeBased;
+import no.swact.action.authorization.voters.CanPostToFeedVoter;
 import no.swact.action.authorization.voters.SuperAdminRoleVoter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,7 @@ public class SecurityProcessingConfiguration extends GlobalMethodSecurityConfigu
     private List<AccessDecisionVoter<Object>> customVoters() {
         List<AccessDecisionVoter<Object>> voters = new ArrayList<>();
         voters.add(new SuperAdminRoleVoter());
+        voters.add(new CanPostToFeedVoter());
         return voters;
     }
 }
