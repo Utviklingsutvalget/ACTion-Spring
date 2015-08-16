@@ -34,7 +34,6 @@ public class InitiationEventRestController {
         if(initiationEvent.getId() != null) {
             throw new RuntimeException("Received initiation event id");
         }
-        System.out.println(initiationEvent.getSchedules());
         return initiationEventService.save(initiationEvent);
     }
 
