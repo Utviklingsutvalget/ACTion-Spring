@@ -12,6 +12,8 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+// Because "User" is a reserved name.
+@Table(name = "Users")
 public class User implements Authentication {
 
     public static final String EMAIL_SUFFIX = "@student.westerdals.no";
