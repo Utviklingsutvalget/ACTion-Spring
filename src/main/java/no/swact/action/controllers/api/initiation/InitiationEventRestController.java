@@ -4,6 +4,7 @@ import no.swact.action.models.exceptions.ResourceNotFoundException;
 import no.swact.action.models.initiation.InitiationEvent;
 import no.swact.action.services.InitiationEventService;
 import no.swact.action.services.InitiationService;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +50,9 @@ public class InitiationEventRestController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public InitiationEvent get(@PathVariable Long id) {
-        return initiationEventService.findOne(id);
+        InitiationEvent one = initiationEventService.findOne(id);
+        Hibernate.initialize(one.getSchedules());
+        return one;
     }
 
     @ExceptionHandler(RuntimeException.class)

@@ -4,6 +4,7 @@ import no.swact.action.models.initiation.InitiationEvent;
 import no.swact.action.models.initiation.InitiationSchedule;
 import no.swact.action.services.InitiationEventService;
 import no.swact.action.services.InitiationService;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,9 @@ public class InitiationRestController {
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<InitiationSchedule> all() {
-        return initiationService.findAll();
+        List<InitiationSchedule> all = initiationService.findAll();
+        all.stream().forEach(one -> Hibernate.initialize(one.getEvents()));
+        return all;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)

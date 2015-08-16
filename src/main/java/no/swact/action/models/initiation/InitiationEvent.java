@@ -10,7 +10,7 @@ import java.util.List;
 @DiscriminatorValue("initiation")
 public class InitiationEvent extends Event {
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<InitiationSchedule> schedules = new ArrayList<>();
 
     public List<InitiationSchedule> getSchedules() {
