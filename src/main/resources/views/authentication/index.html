@@ -1,7 +1,7 @@
 <oauth
         site="https://accounts.google.com"
         template="/views/authentication/login.html"
-        client-id="8688425750-unop2on34k38r414k03rsll55ep5prq2.apps.googleusercontent.com"
+        client-id="{{getClientId()}}"
         redirect-uri="{{getBase()}}/authenticate"
         profile-uri="/me"
         authorize-path="/o/oauth2/auth"

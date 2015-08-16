@@ -17,6 +17,16 @@ angular.module('action').controller('AuthenticationController', ['$scope', '$rou
         $scope.logout();
     });
 
+    $scope.getClientId = function() {
+        var base = $scope.getBase();
+        var s = 'swact.no';
+        if(base.indexOf(s, base.length - s.length) !== -1) {
+            return '8688425750-unop2on34k38r414k03rsll55ep5prq2.apps.googleusercontent.com';
+        } else {
+            return '13727726289-v7nev9lo4apgj55eqbde7n1h4ghu5a9t.apps.googleusercontent.com';
+        }
+    };
+
     $scope.logout = function() {
         AuthenticationService.logout();
         $location.path('/');
