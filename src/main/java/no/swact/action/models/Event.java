@@ -17,7 +17,7 @@ public abstract class Event {
     private String title;
     private ZonedDateTime dateTime;
     private String place;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private UploadedImage image;
     @Column(length = 350)
     private String description;

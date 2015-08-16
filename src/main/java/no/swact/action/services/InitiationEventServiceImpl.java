@@ -6,6 +6,7 @@ import no.swact.action.models.initiation.InitiationSchedule;
 import no.swact.action.repositories.InitiationEventRepository;
 import no.swact.action.repositories.InitiationRepository;
 import no.swact.action.repositories.UploadedImageRepository;
+import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,25 @@ public class InitiationEventServiceImpl implements InitiationEventService {
 
     @Override
     public InitiationEvent findOne(final Long id) {
-        return initiationEventRepository.findOne(id);
+        InitiationEvent one = initiationEventRepository.findOne(id);
+        Hibernate.initialize(one.getSchedules());
+        return one;
     }
 
     @Override
     public InitiationEvent save(final InitiationEvent initiationEvent) {
         attachImage(initiationEvent);
-        return initiationEventRepository.save(initiationEvent);
+        attachSchedules(initiationEvent);
+        List<InitiationSchedule> schedules = initiationEvent.getSchedules();
+        InitiationEvent save = initiationEventRepository.save(initiationEvent);
+        //reattachSchedules(initiationEvent, schedules);
+        LOG.info("Schedules after save: " + save.getSchedules().size());
+        return save;
+    }
+
+    private void reattachSchedules(InitiationEvent initiationEvent, List<InitiationSchedule> schedules) {
+        schedules.forEach(initiationSchedule -> initiationSchedule.getEvents().add(initiationEvent));
+        initiationRepository.save(schedules);
     }
 
     private void attachImage(final InitiationEvent initiationEvent) {
@@ -53,6 +66,7 @@ public class InitiationEventServiceImpl implements InitiationEventService {
     }
 
     private void attachSchedules(final InitiationEvent initiationEvent) {
+        LOG.info("Schedules before: " + initiationEvent.getSchedules().size());
         List<Long> collect = initiationEvent.getSchedules()
                 .stream()
                 .map((initiationSchedule) -> {
@@ -61,7 +75,9 @@ public class InitiationEventServiceImpl implements InitiationEventService {
                     return id;
                 })
                 .collect(Collectors.toList());
+        LOG.info("Schedules IDs: " + collect);
         List<InitiationSchedule> schedulesFromDatabase = initiationRepository.findAll(collect);
+        LOG.info("Schedules found: " + schedulesFromDatabase.size());
         initiationEvent.setSchedules(schedulesFromDatabase);
     }
 

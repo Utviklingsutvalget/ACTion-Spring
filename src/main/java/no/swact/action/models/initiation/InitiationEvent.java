@@ -2,10 +2,7 @@ package no.swact.action.models.initiation;
 
 import no.swact.action.models.Event;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +10,7 @@ import java.util.List;
 @DiscriminatorValue("initiation")
 public class InitiationEvent extends Event {
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<InitiationSchedule> schedules = new ArrayList<>();
 
     public List<InitiationSchedule> getSchedules() {
