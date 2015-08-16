@@ -1,8 +1,33 @@
-<ul class="tabs" data-tab>
-    <li class="tab-title" ng-repeat="schedule in schedules"><a ng-href="#schedule{{schedule.id}}">{{schedule.location.name}}</a></li>
-</ul>
+<div class="row">
+    <div class="medium-8 columns medium-centered">
+        <ul class="tabs button-group round even-3" data-tab>
+            <li class="tab-title" ng-repeat="schedule in schedules"><a ng-href="#schedule{{schedule.id}}">{{schedule.location.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
 <div class="tabs-content">
-    <div ng-repeat="schedule in schedules" class="content" id="schedule{{schedule.id}}" ng-controller="InitiationScheduleController" ng-init="fetchEvents()">
+    <div ng-repeat="schedule in schedules" class="content" id="schedule{{schedule.id}}"
+         ng-controller="InitiationScheduleController" ng-init="fetchEvents()">
+    <div class="row">
+        <div class="medium-12 medium-centered columns utvalg-content-placement">
+            <div class="row">
+                <br />
+                <div class="small-4 columns">
+                    <div class="line lineright"></div>
+                </div>
+                <div class="small-4 columns text-center">
+                    <a data-magellan-destination="program" name="program"><h5><strong>Program</strong></h5></a>
+                </div>
+
+                <div class="small-4 columns">
+                    <div class="line lineleft"></div>
+                </div>
+            </div>
+        </div>
+    </div>
         <h3>Eventer for {{schedule.location.name}}</h3>
 
         <ul class="pricing-table" ng-repeat="event in schedule.events">
