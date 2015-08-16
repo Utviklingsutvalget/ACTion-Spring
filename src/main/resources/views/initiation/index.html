@@ -1,7 +1,7 @@
 <div class="row">
     <div class="medium-8 columns medium-centered">
         <ul class="tabs button-group round even-3" data-tab>
-            <li class="tab-title" ng-repeat="schedule in schedules"><a ng-href="#schedule{{schedule.id}}">{{schedule.location.name}}</a>
+            <li class="tab-title" data-options="deep_linking:true" ng-repeat="schedule in schedules"><a ng-href="#schedule{{schedule.id}}">{{schedule.location.name}}</a>
             </li>
         </ul>
     </div>
