@@ -100,7 +100,10 @@ public class ACTionConfiguration extends SpringDataWebConfiguration {
 
     private Properties jpaProperties() {
         Properties properties = new Properties();
-        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+        String hibernateDialect = env.getProperty("hibernate.dialect");
+        Assert.notNull(hibernateDialect, "Hibernate needs to know which dialect to use. " +
+                "Please set the property \"hibernate.dialect\"");
+        properties.setProperty("hibernate.dialect", hibernateDialect);
         properties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
         return properties;
     }
