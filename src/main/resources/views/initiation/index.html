@@ -11,29 +11,41 @@
 <div class="tabs-content">
     <div ng-repeat="schedule in schedules" class="content" id="schedule{{schedule.id}}"
          ng-controller="InitiationScheduleController" ng-init="fetchEvents()">
-    <div class="row">
-        <div class="medium-12 medium-centered columns utvalg-content-placement">
-            <div class="row">
-                <br />
-                <div class="small-4 columns">
-                    <div class="line lineright"></div>
-                </div>
-                <div class="small-4 columns text-center">
-                    <a data-magellan-destination="program" name="program"><h5><strong>Program</strong></h5></a>
-                </div>
+        <div class="row">
+            <div class="medium-12 medium-centered columns utvalg-content-placement">
+                <div class="row">
+                    <br/>
 
-                <div class="small-4 columns">
-                    <div class="line lineleft"></div>
+                    <div class="small-4 columns">
+                        <div class="line lineright"></div>
+                    </div>
+                    <div class="small-4 columns text-center">
+                        <a data-magellan-destination="program" name="program"><h5><strong>Program</strong></h5></a>
+                    </div>
+
+                    <div class="small-4 columns">
+                        <div class="line lineleft"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-        <h3>Eventer for {{schedule.location.name}}</h3>
+        <div class="row">
+            <div class="medium-12 columns" ng-repeat="(date, events) in schedule.events | groupBy: formatToDateOnly('dateTime')">
+                <h3>{{date}}</h3>
+                <div ng-repeat="event in events">
+                    <div class="small-2 medium-1  columns">
+                        <p><strong>{{event.dateTime | amDateFormat:'hh:mm'}}</strong></p>
+                    </div>
+                    <div class="small-10 medium-11 columns">
+                        <dl>
+                            <dt>{{event.title}}</dt>
+                            <dd btf-markdown="event.desciption"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <ul class="pricing-table" ng-repeat="event in schedule.events">
-            <li class="price"><img ng-src="{{event.image.url}}" src=""></li>
-            <li class="title">{{event.title}}</li>
-            <li class="description" btf-markdown="event.description"></li>
-        </ul>
+
     </div>
 </div>

@@ -1,9 +1,20 @@
 angular.module('action').controller('InitiationScheduleController', ['$scope', '$routeParams', 'InitiationService',
-    function ($scope, $routeParams, InitiationService) {
+    'amMoment',
+    function ($scope, $routeParams, InitiationService, amMoment) {
         $scope.fetch = function (id) {
             InitiationService.get(id).success(function(schedule) {
                 $scope.schedule = schedule;
             });
+        };
+
+        $scope.formatToDateOnly = function(stamp) {
+            stamp = amMoment.preprocessDate(stamp);
+            var date = moment(stamp);
+            if (!date.isValid()) {
+                return '';
+            }
+
+            return amMoment.applyTimezone(date).format('Do MMMM');
         };
 
         $scope.fetchEvents = function() {
