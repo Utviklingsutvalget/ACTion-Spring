@@ -15,4 +15,6 @@ public interface InitiationEventService {
     List<InitiationEvent> findAllEventsForScheduleId(Long id);
 
     InitiationEvent update(InitiationEvent initiationEvent);
+
+    void delete(InitiationEvent fromDb);
 }

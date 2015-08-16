@@ -48,6 +48,14 @@ public class InitiationEventRestController {
         return initiationEventService.save(initiationEvent);
     }
 
+    @PreAuthorize("hasRole('INITIATION')")
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Long id) {
+        InitiationEvent fromDb = initiationEventService.findOne(id);
+        fromDb.getSchedules().clear();
+        initiationEventService.delete(fromDb);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public InitiationEvent get(@PathVariable Long id) {
         InitiationEvent one = initiationEventService.findOne(id);

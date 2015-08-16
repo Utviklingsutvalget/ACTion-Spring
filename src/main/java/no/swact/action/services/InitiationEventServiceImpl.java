@@ -90,4 +90,9 @@ public class InitiationEventServiceImpl implements InitiationEventService {
     public InitiationEvent update(final InitiationEvent initiationEvent) {
         return save(initiationEvent);
     }
+
+    @Override
+    public void delete(InitiationEvent fromDb) {
+        initiationEventRepository.delete(fromDb);
+    }
 }

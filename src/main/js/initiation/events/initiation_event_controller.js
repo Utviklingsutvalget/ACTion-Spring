@@ -25,6 +25,12 @@ angular.module('action').controller('InitiationEventController', [
             });
         };
 
+        $scope.deleteEvent = function() {
+            InitiationService.deleteEvent($scope.event).then(function(response) {
+                $location.path('/admin/initiation');
+            });
+        };
+
         $scope.addScheduleToEvent = function(schedule) {
             if(!schedule) {
                 return;

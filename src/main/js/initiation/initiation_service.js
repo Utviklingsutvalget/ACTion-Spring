@@ -19,6 +19,10 @@ angular.module('action').service('InitiationService', ['$http', function ($http)
         return $http.get('/api/initiation/events');
     };
 
+    this.deleteEvent = function(event) {
+        return $http.delete('/api/initiation/events/' + event.id);
+    };
+
     this.saveEvent = function (event) {
         if (event.id) {
             return $http.put('/api/initiation/events/' + event.id, event);
