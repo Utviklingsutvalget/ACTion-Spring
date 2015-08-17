@@ -1,11 +1,27 @@
 angular.module('action').controller('InitiationSchedulesController', ['$scope', '$routeParams', '$location',
-    'InitiationService',
-    function ($scope, $routeParams, $location, InitiationService) {
+    'InitiationService', 'amMoment',
+    function ($scope, $routeParams, $location, InitiationService, amMoment) {
 
         $scope.fetchAll = function() {
             InitiationService.findAll().success(function(schedules) {
                 $scope.schedules = schedules;
             });
+        };
+
+        $scope.select = function(schedule) {
+            $scope.selected = schedule;
+        };
+
+        $scope.formatToDateOnly = function(event) {
+            var stamp = event.dateTime;
+            stamp = amMoment.preprocessDate(stamp);
+            var date = moment(stamp);
+            if (!date.isValid()) {
+                return '';
+            }
+
+            var timeZoned = amMoment.applyTimezone(date);
+            return timeZoned.format('dddd Do MMMM');
         };
 
         $scope.createSchedule = function() {
