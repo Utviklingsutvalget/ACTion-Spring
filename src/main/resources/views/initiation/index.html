@@ -32,7 +32,7 @@
         <div class="row">
             <div class="medium-12 columns" ng-repeat="(date, events) in schedule.events | orderBy: '+dateTime' | groupBy: formatToDateOnly">
                 <h3>{{date}}</h3>
-                <div ng-repeat="event in events | orderBy:'+dateTime'">
+                <div ng-repeat="event in events | orderBy:'+dateTime'" class="columns">
                     <div class="small-2 medium-1  columns">
                         <p><strong>{{event.dateTime | amDateFormat:'HH:mm'}}</strong></p>
                     </div>
