@@ -9,7 +9,7 @@
 <div ng-repeat="feed in feeds">
     <div class="medium-6 columns">
         <img ng-src="{{feed.image.url}}"/>
-        <h6>{{feed.dateTime}}</h6>
+        <h6>{{feed.dateTime | amDateFormat: 'Do MMMM, HH:mm'}}</h6>
         <h4><a ng-href="/#!/feed/{{feed.id}}">{{feed.title}}</a></h4>
         <p>{{feed.snippet}}</p>
     </div>
