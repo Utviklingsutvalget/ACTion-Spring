@@ -30,8 +30,8 @@
     </div>
     <div class="row">
         <div class="medium-12 columns"
-             ng-repeat="(date, events) in selected.events | orderBy: '+dateTime' | groupBy: formatToDateOnly">
-            <h3>{{date}}</h3>
+             ng-repeat="(date, events) in selected.events | groupBy: formatToDateOnly | reverse">
+            <h3>Eventer for {{events[0].dateTime | amDateFormat:'dddd, Do MMMM'}}</h3>
 
             <div ng-repeat="event in events | orderBy:'+dateTime'" class="columns">
                 <div class="small-2 medium-1  columns">

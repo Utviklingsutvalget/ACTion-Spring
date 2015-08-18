@@ -21,7 +21,7 @@ angular.module('action').controller('InitiationSchedulesController', ['$scope', 
             }
 
             var timeZoned = amMoment.applyTimezone(date);
-            return timeZoned.format('dddd Do MMMM');
+            return timeZoned.startOf('day');
         };
 
         $scope.createSchedule = function() {
