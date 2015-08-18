@@ -12,11 +12,13 @@ angular.module('action').controller('InitiationSchedulesController', ['$scope', 
             $scope.selected = schedule;
         };
 
-        $scope.formatToDateOnly = function(event) {
-            var stamp = event.dateTime;
-            stamp = amMoment.preprocessDate(stamp);
+        $scope.formatToDateOnly = function(stamp) {
+            console.log(stamp);
+            //stamp = amMoment.preprocessDate(stamp);
             var date = moment(stamp);
+            console.log(date);
             if (!date.isValid()) {
+                console.log("invalid");
                 return '';
             }
 
